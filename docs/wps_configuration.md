@@ -65,7 +65,7 @@
 
     ./configure
 
-Type Y Then paste the NETCDFINC path , ...
+If you did not set the path for NETCDFINC, type Y then paste the NETCDFINC path as given above.
 
 
     nano configure.wps
