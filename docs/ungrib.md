@@ -25,9 +25,8 @@ Create GFS data under /WRF_Resources that you just created.
 
 Website description, data and check if your dates are available.
 
-Create a python script to download the GFS Data. Make necessary changes on the dates and hours.This python script downloads 4 data on 20210629 with 6 hours interval. The alternatives would be going to the official 
+Create a python script to download the GFS Data. Make necessary changes on the dates and hours.This python script downloads 4 data files on 20210629 with 6 hours interval. You have to create an account with rda.ucar.edu first. The alternatives would be going to the official 
 [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank}: description and upload the python script through DCV.
-
 ```
 cat <<EOF > download_20210629.py
 #!/usr/bin/env python
