@@ -18,6 +18,8 @@
 
 # Create Cluster
 
+We have to create a computer cluster on AWS to install and run WRF. The links to AWS and PCluster Managers are below. Go PCluster link to create the cluster.
+
 * Link to AWS
 * Link to PCluster Manager
 * Create Cluster
