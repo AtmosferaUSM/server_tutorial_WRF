@@ -584,7 +584,7 @@ cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortr
 <h2 id="edit-configurewps-file"><strong>Edit configure.wps File</strong></h2>
 <pre><code>./configure
 </code></pre>
-<p>Type Y Then paste the NETCDFINC path , ...</p>
+<p>If you did not set the path for NETCDFINC, type Y then paste the NETCDFINC path as given above.</p>
 <pre><code>nano configure.wps
 </code></pre>
 <p>Add <mark class="critic"> -lnetcdff -lnetcdf -qopenmp </mark> then save</p>
