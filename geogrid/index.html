@@ -363,6 +363,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#edit-the-geog_data_path-in-namelistwps" class="md-nav__link">
+    Edit the geog_data_path in namelist.wps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-the-geogrid-section-in-namelistwps" class="md-nav__link">
+    Edit the &amp;geogrid section in namelist.wps
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -424,6 +438,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../namelist/" class="md-nav__link">
         Resources
       </a>
@@ -471,6 +500,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#edit-the-geog_data_path-in-namelistwps" class="md-nav__link">
+    Edit the geog_data_path in namelist.wps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-the-geogrid-section-in-namelistwps" class="md-nav__link">
+    Edit the &amp;geogrid section in namelist.wps
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -486,27 +529,11 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="geogrid">Geogrid</h1>
 <h2 id="preliminary"><strong>Preliminary</strong></h2>
-<p>Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named WRF_Resources to put all the required input data for WPS. We will download all the required data under the /scratch folder.</p>
-<pre><code>mkdir WRF_Resources
+<p>Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named <code>WRF_Resources</code> to put all the required input data for WPS. We will download all the required data under the <code>/scratch</code> folder.</p>
+<pre><code>cd /shared/scratch
+mkdir WRF_Resources
 cd WRF_Resources
 </code></pre>
 <h2 id="download-the-geogrid-data"><strong>Download the geogrid data</strong></h2>
@@ -516,7 +543,8 @@ cd WRF_Resources
 <pre><code>wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz
 tar -xf geog_high_res_mandatory.tar.gz
 </code></pre>
-<p>Point the directory of high resolution data to WRF_Resources in the nameslist. To do that, you will first have to obtain the path to WPS_GEOG.</p>
+<h2 id="edit-the-geog_data_path-in-namelistwps"><strong>Edit the geog_data_path in namelist.wps</strong></h2>
+<p>Point the directory of high resolution data to WRF_Resources in the <code>nameslist.wps</code>. To do that, you will first have to obtain the path to WPS_GEOG.</p>
 <pre><code>cd WPS_GEOG
 pwd
 </code></pre>
@@ -525,15 +553,17 @@ pwd
 nano namelist.wps
 </code></pre>
 <p>Under the &amp;geogrid section, edit the geog_data_path and save it.</p>
-<p>*screenshot</p>
-<p>Export the LD_LIBRARY_PATH and run the geogrid.exe. Make sure you had load the intel-oneapi-compilers and intel-oneapi-mpi using spack to avoid issue missing libiomp5.so. </p>
+<p><img alt="Alt Text" src="../images/geogrid/add%20path.png" /></p>
+<h2 id="edit-the-geogrid-section-in-namelistwps"><strong>Edit the &amp;geogrid section in namelist.wps</strong></h2>
+<p>Before executing geogrid.exe, edit the information in the namelist according to your case. Read the description for each listed variables in the namelist, as well as <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> here. We will be using the information provided in the Resources tab in this tutorial. </p>
+<p>Export the LD_LIBRARY_PATH and run the geogrid.exe. Make sure you had load the <code>intel-oneapi-compilers</code> and <code>intel-oneapi-mpi</code> using spack to avoid issue missing libiomp5.so. </p>
 <pre><code>export LD_LIBRARY_PATH=$(spack location -i netcdf-fortran%intel)/lib/
 spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 ./geogrid.exe
 </code></pre>
-<p>If your geogrid runs successfully, the following output will be printed.</p>
-<p>*screenshot</p>
+<p>If your geogrid runs successfully, the following output will be printed: <code>Successful completion of geogrid.</code></p>
+<p><img alt="Alt Text" src="../images/geogrid/successful%20output.png" /></p>
 
 
 

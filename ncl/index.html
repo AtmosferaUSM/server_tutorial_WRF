@@ -417,6 +417,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../namelist/" class="md-nav__link">
         Resources
       </a>
@@ -472,33 +487,16 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="ncl-installation">NCL Installation</h1>
 <h2 id="install-ncl"><strong>Install NCL</strong></h2>
+<p>Using the binary cache, this should take only around 5 minutes. Once installed, check whether ncl is available. </p>
 <pre><code>spack install ncl^hdf5@1.8.22
 </code></pre>
-<p>--</p>
 <pre><code>spack load ncl
 ncl -h
 </code></pre>
 <p><img alt="Alt Text" src="../images/ncl%20installation/ncl%20h.png" /></p>
-<p>--</p>
+<p>Now we set up the NCL X11 window size <code>1000 x 1000</code> to view the WRF output later. </p>
 <pre><code>cat &lt;&lt; EOF &gt; $HOME/.hluresfile
 *windowWorkstationClass*wkWidth  : 1000
 *windowWorkstationClass*wkHeight : 1000

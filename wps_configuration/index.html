@@ -445,6 +445,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../namelist/" class="md-nav__link">
         Resources
       </a>
@@ -528,25 +543,9 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="wps-configuration">WPS Configuration</h1>
 <h2 id="create-a-soft-link-for-the-wps"><strong>Create a soft link for the WPS</strong></h2>
+<p>Load the compilers before you start doing anything.</p>
 <pre><code>spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 </code></pre>
@@ -560,9 +559,10 @@ ls
 <h2 id="jasper-installation"><strong>Jasper Installation</strong></h2>
 <pre><code>spack install jasper@2.0.31%intel
 </code></pre>
-<p>--</p>
+<p>Check if the <code>jasper version 2.0.31</code> is installed.</p>
 <pre><code>spack find
 </code></pre>
+<p><img alt="Alt Text" src="../images/WPS%20configuration/jasper_2.0.31.png" /></p>
 <h2 id="export"><strong>Export</strong></h2>
 <pre><code>export JASPERLIB=$(spack location -i jasper@2.0.31%intel)/lib64
 export JASPERINC=$(spack location -i jasper@2.0.31%intel)/include
@@ -572,26 +572,26 @@ export NETCDFLIB=$(spack location -i netcdf-fortran%intel)/lib
 export NETCDF=$(spack location -i netcdf-fortran%intel)
 export NETCDFF=$(spack location -i netcdf-fortran%intel)
 </code></pre>
-<p>--</p>
+<p>Check if the variables are imported correctly.</p>
 <pre><code>echo $NETCDFINC
 echo $NETCDFLIB
 </code></pre>
-<p>--</p>
+<p>Then, copy the contents of lib and include of <code>netcdf-c</code> to <code>netcdf-fortran</code> of the intel compilers.</p>
 <pre><code>cp -a $(spack location -i netcdf-c%intel)/include/. $(spack location -i netcdf-fortran%intel)/include/
 cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortran%intel)/lib/
 </code></pre>
-<p>--</p>
 <h2 id="edit-configurewps-file"><strong>Edit configure.wps File</strong></h2>
 <pre><code>./configure
 </code></pre>
-<p>If you did not set the path for NETCDFINC, type Y then paste the NETCDFINC path as given above.</p>
+<p>If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code> then paste the <code>NETCDFINC</code> path as given above.</p>
 <pre><code>nano configure.wps
 </code></pre>
-<p>Add <mark class="critic"> -lnetcdff -lnetcdf -qopenmp </mark> then save</p>
-<p>-- </p>
+<p>Look for <code>WRF_LIB</code> and add <code>-qopenmp</code> after <code>-lnetcdff -lnetcdf</code> then save.</p>
+<p><img alt="Alt Text" src="../images/WPS%20configuration/add_qopenmp.png" /></p>
 <h2 id="compile"><strong>Compile</strong></h2>
 <pre><code>./compile &gt; log.compile
 </code></pre>
+<p><img alt="Alt Text" src="../images/WPS%20configuration/wpsconfiguration_sucessful.png" /></p>
 <blockquote>
 <p><strong>Clean</strong> - to reset WPS settings!</p>
 </blockquote>

@@ -438,6 +438,21 @@
   
   
     <li class="md-nav__item">
+      <a href="delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="namelist/" class="md-nav__link">
         Resources
       </a>
@@ -514,32 +529,16 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
+<p>This tutorial will cover from the cluster creation using PClusterManager to the configuration and compilation of WRF Version 4.3.3 (Weather Research and Forecasting) and WPS version 4.3.1 (WRF Preprocessing System) using Spack.</p>
 <h1 id="create-cluster">Create Cluster</h1>
 <p>We have to create a computer cluster on AWS to install and run WRF. The links to AWS and PCluster Managers are below. Go to the PCluster link to create the cluster after having a account on AWS.</p>
 <ul>
 <li>Link to AWS</li>
 <li>Link to PCluster Manager</li>
-<li>Create Cluster</li>
 </ul>
 <p><img alt="Alt Text" src="images/Create%20cluster/1.png" /></p>
 <h2 id="upload-yml-file"><strong>Upload YML file</strong></h2>
+<p>PCluster Manager makes it easy for us to create and manage the clusters through interface. This is an example configuration. For your first time, you may choose to upload the yml file we have prepared for you and configure to your prefered headnode and shared storage later by updating the yaml file further. In order for AWS to verify your identity, you will need to create your own <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html" target="_blank">EC2 Key Pair</a> using Amazon EC2.  </p>
 <pre><code>HeadNode:
   InstanceType: c5a.xlarge
   Ssh:
@@ -600,20 +599,16 @@ SharedStorage:
 <ul>
 <li>Dry Run</li>
 </ul>
-<p><mark class="critic">Request would have succeeded, but DryRun flag is set.</mark></p>
-<pre><code>Request would have succeeded, but DryRun flag is set.
-</code></pre>
+<p>You can opt to dry run your cluster before creating it. After dry run, you will see this message printed: <code>Request would have succeeded, but DryRun flag is set</code>.</p>
 <ul>
 <li>Create</li>
 </ul>
+<p>Creating cluster will take around 15-20 minutes. You may check if you are interested in the steps or current progress of stack events.</p>
 <h2 id="create-in-progress"><strong>Create in Progress</strong></h2>
 <p><img alt="Alt Text" src="images/Create%20cluster/5.png" /></p>
 <h2 id="create-complete"><strong>Create Complete</strong></h2>
+<p>Now you should be able to see the cluster <code>WRF</code> in <code>CREATE_COMPLETE</code> status from your PCluster Manager interface. Click on Shell and login to your own AWS account to access the terminal.</p>
 <p><img alt="Alt Text" src="images/Create%20cluster/7.png" /></p>
-<ul>
-<li>Click on Shell</li>
-<li>Login to your AWS account </li>
-</ul>
 
 
 

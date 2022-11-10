@@ -393,6 +393,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#run-metgrid" class="md-nav__link">
+    Run metgrid
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -411,6 +418,21 @@
     <li class="md-nav__item">
       <a href="../run_wrf/" class="md-nav__link">
         Running WRF
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
       </a>
     </li>
   
@@ -471,6 +493,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#run-metgrid" class="md-nav__link">
+    Run metgrid
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -486,23 +515,6 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="metgrid">METGRID</h1>
 <h2 id="export-the-library-path"><strong>Export the library path</strong></h2>
 <pre><code>export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/netcdf-fortran-4.5.4-a3txw6pecfmvci7zgwpr3p7nzlqt2k2m/lib
@@ -511,9 +523,10 @@
 <pre><code>spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 </code></pre>
-<p>Run metgird.</p>
+<h2 id="run-metgrid"><strong>Run metgrid</strong></h2>
 <pre><code>./metgrid.exe
 </code></pre>
+<p><img alt="Alt Text" src="../images/metgrid/cut_successful_met_em_files.png" /></p>
 
 
 

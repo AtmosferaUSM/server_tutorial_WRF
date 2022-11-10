@@ -417,6 +417,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../namelist/" class="md-nav__link">
         Resources
       </a>
@@ -472,39 +487,23 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="intel-compiler-installation">Intel Compiler Installation</h1>
 <pre><code>spack install --no-cache intel-oneapi-compilers@2022.0.2
 </code></pre>
-<p>--</p>
+<p>Check that the compiler is installed.</p>
 <pre><code>spack find
 </code></pre>
-<p>--</p>
+<p>Load the installed compiler onto Spack so that it recognizes it as a compiler.</p>
 <pre><code>spack load intel-oneapi-compilers
 spack compiler find
 spack unload
 </code></pre>
-<p>--</p>
+<p>Then, check the <code>spack compilers</code> command. You should see the Intel compiler that you just installed.</p>
 <pre><code>spack compilers
 </code></pre>
 <p><img alt="Alt Text" src="../images/intel%20compilers/spack%20compilers.png" /></p>
 <h2 id="install-intel-mpi"><strong>Install Intel MPI</strong></h2>
+<p>Install Intel MPI using the compiler you just installed.</p>
 <pre><code>spack install --no-cache intel-oneapi-mpi+external-libfabric%intel
 </code></pre>
 

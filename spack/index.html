@@ -424,6 +424,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../delete_spack/" class="md-nav__link">
+        Delete Spack Folder
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../namelist/" class="md-nav__link">
         Resources
       </a>
@@ -486,64 +501,50 @@
                   
 
 
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-<del class="critic">deleted</del>
-<ins class="critic">added</ins>
-<del class="critic">one</del><ins class="critic">a single</ins>
-<mark class="critic">Highlighting</mark>
-<span class="critic comment">and comments can be added inline</span>
---->
-
 <h1 id="spack-installation">Spack Installation</h1>
 <h2 id="verify-the-cluster"><strong>Verify the Cluster</strong></h2>
+<p>It is always good to verify the cluster information (sinfo, filesystems, etc.) before you start the installation. Check the file systems through this command. </p>
 <pre><code>df -h
 </code></pre>
-<p>--</p>
+<p>Check the basic Slurm information. You will notice that all 10 nodes is in idle state because there is no ongoing activity submitted now.</p>
 <pre><code>sinfo
 </code></pre>
 <p><img alt="Alt Text" src="../images/spack%20installation/sinfo.png" /></p>
 <h2 id="spack-installation_1"><strong>Spack Installation</strong></h2>
-<p>Download Spack</p>
+<p>Now, we define the variable <code>SPACK_ROOT</code> and download <code>Spack Version 0.18.0</code> under the <code>/spack</code> folder created.</p>
 <pre><code>export SPACK_ROOT=/shared/spack
 mkdir -p $SPACK_ROOT
 git clone -b v0.18.0 -c feature.manyFiles=true https://github.com/spack/spack $SPACK_ROOT
 </code></pre>
 <p><img alt="Alt Text" src="../images/spack%20installation/gitclone.png" /></p>
-<p>Define .bashrc file</p>
+<p>Define the <code>.bashrc</code> file and source it to run the preconfigured spack everytime you open a new terminal.</p>
 <pre><code>echo "export SPACK_ROOT=/shared/spack" &gt;&gt; $HOME/.bashrc
 echo "source \$SPACK_ROOT/share/spack/setup-env.sh" &gt;&gt; $HOME/.bashrc
 source $HOME/.bashrc
 </code></pre>
-<p>Spack Version</p>
+<p>To check your Spack Version, type this or if you want to know more about the Spack you installed, try <code>spack -h</code>. </p>
 <pre><code>spack -V
 </code></pre>
-<p>0.18.1 (13e6187e£65279546152eaea303841978e836992)</p>
+<p>Notice that the version installed is <code>0.18.0</code>.</p>
 <p><strong>Patchelf Installation</strong></p>
-<p>--</p>
+<p><code>Patchelf</code> is a small utility to modify the dynamic linker and RPATH of ELF executables.</p>
 <pre><code>spack install patchelf
 </code></pre>
-<p>-- </p>
+<p>Check the patchelf location and see if it is properly installed. </p>
 <pre><code>spack find 
 spack load patchelf
 which patchelf
 </code></pre>
-<p>Spack build cache</p>
+<p><strong>Spack build cache</strong></p>
+<p>Install prerequisites</p>
 <pre><code>pip3 install botocore==1.23.46 boto3==1.20.46
 </code></pre>
 <p>Add the mirror to the binary cache</p>
 <pre><code>spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
 spack buildcache keys --install --trust --force
 </code></pre>
-<p>Adding parallel cluster's softwares to the Spack</p>
+<p>Adding parallel cluster's softwares to the Spack so that it recognises that these packages are installed. 
+Copy and paste the following into your CLI. </p>
 <pre><code>cat &lt;&lt; EOF &gt; $SPACK_ROOT/etc/spack/packages.yaml
 packages:
     libfabric:
