@@ -1,26 +1,10 @@
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-{--deleted--}
-{++added++}
-{~~one~>a single~~}
-{==Highlighting==}
-{>>and comments can be added inline<<}
----> 
-
 # Geogrid
 
 ## **Preliminary**
 
-Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named WRF_Resources to put all the required input data for WPS. We will download all the required data under the /scratch folder.
+Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named `WRF_Resources` to put all the required input data for WPS. We will download all the required data under the `/scratch` folder.
 
+    cd /shared/scratch
     mkdir WRF_Resources
     cd WRF_Resources
 
@@ -33,7 +17,9 @@ You can download the mandatory high resolution data from the official website of
     wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz
     tar -xf geog_high_res_mandatory.tar.gz
 
-Point the directory of high resolution data to WRF_Resources in the nameslist. To do that, you will first have to obtain the path to WPS_GEOG.
+## **Edit the geog_data_path in namelist.wps**   
+
+Point the directory of high resolution data to WRF_Resources in the `nameslist.wps`. To do that, you will first have to obtain the path to WPS_GEOG.
 
     cd WPS_GEOG
     pwd
@@ -45,15 +31,19 @@ Copy the path and go to the directory `/shared/scratch/WPS/WRF_Resources/WPS_GEO
 
 Under the &geogrid section, edit the geog_data_path and save it.
 
-*screenshot
+![Alt Text](images/geogrid/add path.png)
 
-Export the LD_LIBRARY_PATH and run the geogrid.exe. Make sure you had load the intel-oneapi-compilers and intel-oneapi-mpi using spack to avoid issue missing libiomp5.so. 
+## **Edit the &geogrid section in namelist.wps** 
+
+Before executing geogrid.exe, edit the information in the namelist according to your case. Read the description for each listed variables in the namelist, as well as [best practice](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html){target=_blank} here. We will be using the information provided in the Resources tab in this tutorial. 
+
+Export the LD_LIBRARY_PATH and run the geogrid.exe. Make sure you had load the `intel-oneapi-compilers` and `intel-oneapi-mpi` using spack to avoid issue missing libiomp5.so. 
 
     export LD_LIBRARY_PATH=$(spack location -i netcdf-fortran%intel)/lib/
     spack load intel-oneapi-compilers
     spack load intel-oneapi-mpi
     ./geogrid.exe
 
-If your geogrid runs successfully, the following output will be printed.
+If your geogrid runs successfully, the following output will be printed: `Successful completion of geogrid.`
 
-*screenshot
+![Alt Text](images/geogrid/successful output.png)

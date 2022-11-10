@@ -1,23 +1,8 @@
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-{--deleted--}
-{++added++}
-{~~one~>a single~~}
-{==Highlighting==}
-{>>and comments can be added inline<<}
----> 
-
 # WPS Configuration
 
 ## **Create a soft link for the WPS**
+
+Load the compilers before you start doing anything.
     
     spack load intel-oneapi-compilers
     spack load intel-oneapi-mpi
@@ -34,9 +19,11 @@
 
     spack install jasper@2.0.31%intel
 
---
+Check if the `jasper version 2.0.31` is installed.
 
     spack find
+
+![Alt Text](images/WPS configuration/jasper_2.0.31.png)
 
 ## **Export**   
 
@@ -48,16 +35,16 @@
     export NETCDF=$(spack location -i netcdf-fortran%intel)
     export NETCDFF=$(spack location -i netcdf-fortran%intel)
 
---
+Check if the variables are imported correctly.
 
     echo $NETCDFINC
     echo $NETCDFLIB
     
---
+Then, copy the contents of lib and include of `netcdf-c` to `netcdf-fortran` of the intel compilers.
 
     cp -a $(spack location -i netcdf-c%intel)/include/. $(spack location -i netcdf-fortran%intel)/include/
     cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortran%intel)/lib/ 
---
+
 
 
 
@@ -65,21 +52,21 @@
 
     ./configure
 
-If you did not set the path for NETCDFINC, type Y then paste the NETCDFINC path as given above.
+If you did not set the path for `NETCDFINC`, type `Y` then paste the `NETCDFINC` path as given above.
 
 
     nano configure.wps
 
-Add {== -lnetcdff -lnetcdf -qopenmp ==} then save
 
+Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
 
-
--- 
+![Alt Text](images/WPS configuration/add_qopenmp.png)
 
 ## **Compile**  
     
     ./compile > log.compile
 
+![Alt Text](images/WPS configuration/wpsconfiguration_sucessful.png)
 
 > **Clean** - to reset WPS settings!
 

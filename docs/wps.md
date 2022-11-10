@@ -1,20 +1,3 @@
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-{--deleted--}
-{++added++}
-{~~one~>a single~~}
-{==Highlighting==}
-{>>and comments can be added inline<<}
----> 
-
 # WPS Installation
 
 ```

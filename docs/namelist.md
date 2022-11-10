@@ -114,8 +114,8 @@ cat <<EOF > namelist.wps
 &share
  wrf_core = 'ARW',
  max_dom = 1,
- start_date = '2021-06-30_00:00:00','2021-06-30_00:00:00',
- end_date   = '2021-06-30_18:00:00','2021-06-30_18:00:00',
+ start_date = '2021-06-29_00:00:00','2021-06-29_00:00:00',
+ end_date   = '2021-06-29_18:00:00','2021-06-29_18:00:00',
  interval_seconds = 21600
 /
 
@@ -127,8 +127,8 @@ cat <<EOF > namelist.wps
  e_we              =  100, 220,
  e_sn              =  127, 214,
  geog_data_res = 'default','default',
- dx = 4100,
- dy = 4100,
+ dx = 15000,
+ dy = 15000,
  map_proj = 'mercator',
  ref_lat   =  5.464,
  ref_lon   =  100.289,

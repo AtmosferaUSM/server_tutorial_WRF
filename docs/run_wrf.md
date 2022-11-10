@@ -1,42 +1,39 @@
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-{--deleted--}
-{++added++}
-{~~one~>a single~~}
-{==Highlighting==}
-{>>and comments can be added inline<<}
----> 
-
 # Running WRF
 
-Congratulations on your successful running of WPS. It is time to run WRF.
-Go into the WRF/run directory and link `met_em*` file
-
-    cd $(spack location -i wrf%intel)/run
+Congratulations on your successful running of WPS 🥳 Now you are just one step away! Copy the WRF file in the newly created WRF folder in `/scratch`. Go into the `WRF/run` directory and link `met_em*` file.
+   
+ 
+    cd /shared/scratch
+    mkdir WRF
+    cd WRF
+    cp -a $(spack location -i wrf%intel)/. /shared/scratch/WRF
+    cd run
     ln -sf /shared/scratch/WPS/met_em* .
     ls -alh
 
-Edit the namelist.input and make necessary changes. The details including `&time_control` and `&domains` has to be the same as defined in the `namelist.wps`.You may change the `&physics` option here too. Refer to [UCAR Website](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html){target=_blank} for the best practices.
+![successful link met_em in run](images/running wrf/successful_link_met_em_in_run.png)
+
+Edit the `namelist.input` and make necessary changes or simply overwrite the namelist from the Resources tab. The details including `&time_control` and `&domains` has to be the same as defined in the `namelist.wps`.You may change the `&physics` option here too. Refer to [UCAR Website](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html){target=_blank} for the best practices.
+
 
     nano namelist.input
 
-Execute the real program
 
+Execute the real program. Load the `WRF` package before you run.
+
+
+    spack load wrf
     mpirun -np 1 ./real.exe
 
-Check the rsl.error files to ensure that the run was successful. To do that, you can use the tail command. Usually, the `rsl.error0000` will contain the most information.This indicate the successful run of `real.exe` {==real_em: SUCCESS COMPLETE REAL_EM INIT==}
+
+Check the rsl.error files to ensure that the run was successful. To do that, you can use the tail command. Usually, the `rsl.error0000` will contain the most information.This indicate the successful run of `real.exe`, `real_em: SUCCESS COMPLETE REAL_EM INIT`.
+
 
     tail rsl.error.0000
 
-Now you are ready to run the `wrf.exe`. We can use the slurm to submit and distribute the tasks for us.Kindly amend the information according to your need. 
+![successful real.exe run](images/running wrf/successful_real.exe_run.png)
+
+Now you are ready to run the `wrf.exe`. We can use the slurm to submit and distribute the tasks for us. In order for the slurm to run wrf, make sure that it is in the same directory where your wrf.exe is located. Kindly amend the information according to your need. 
 
 ```
 cat <<EOF > slurm-wrf-penang.sh
@@ -71,8 +68,15 @@ EOF
 
 Submit the slurm job. You can check the run by `squeue`.
 
+
+    spack load intel-oneapi-compilers
+    spack load intel-oneapi-mpi
+    spack load wrf
     sbatch slurm-wrf-penang.sh
+
 
 Check the `rsl.out.0000` file to see if the run was successful. You will see a successful message printed at the end of the file.
 
     tail rsl.out.0000
+
+![successful output of wrf](images/running wrf/successful output of wrf.png)

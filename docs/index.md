@@ -1,20 +1,4 @@
-
-<!--- 
-
-[atmosfera website](https://atmosfera.usm.my/)
-
-**Bold Text** 
-
-> following points:
-- list
-- list
-
-{--deleted--}
-{++added++}
-{~~one~>a single~~}
-{==Highlighting==}
-{>>and comments can be added inline<<}
----> 
+This tutorial will cover from the cluster creation using PClusterManager to the configuration and compilation of WRF Version 4.3.3 (Weather Research and Forecasting) and WPS version 4.3.1 (WRF Preprocessing System) using Spack.
 
 # Create Cluster
 
@@ -22,11 +6,12 @@ We have to create a computer cluster on AWS to install and run WRF. The links to
 
 * Link to AWS
 * Link to PCluster Manager
-* Create Cluster
 
 ![Alt Text](images/Create cluster/1.png)
 
 ## **Upload YML file**
+
+PCluster Manager makes it easy for us to create and manage the clusters through interface. This is an example configuration. For your first time, you may choose to upload the yml file we have prepared for you and configure to your prefered headnode and shared storage later by updating the yaml file further. In order for AWS to verify your identity, you will need to create your own [EC2 Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html){target=_blank} using Amazon EC2.  
 
 ```
 HeadNode:
@@ -91,19 +76,20 @@ SharedStorage:
 
 * Dry Run
 
-{==Request would have succeeded, but DryRun flag is set.==}
+You can opt to dry run your cluster before creating it. After dry run, you will see this message printed: `Request would have succeeded, but DryRun flag is set`.
 
-    Request would have succeeded, but DryRun flag is set.
 
 * Create
+
+Creating cluster will take around 15-20 minutes. You may check if you are interested in the steps or current progress of stack events.
 
 ## **Create in Progress**
 
 ![Alt Text](images/Create cluster/5.png)
 
 ## **Create Complete**
+
+Now you should be able to see the cluster `WRF` in `CREATE_COMPLETE` status from your PCluster Manager interface. Click on Shell and login to your own AWS account to access the terminal.
  
 ![Alt Text](images/Create cluster/7.png)
 
-* Click on Shell
-* Login to your AWS account 

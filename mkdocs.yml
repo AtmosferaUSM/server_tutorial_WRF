@@ -66,4 +66,5 @@ nav:
   - UNGRIB: ungrib.md
   - METGRID: metgrid.md
   - Running WRF: run_wrf.md
+  - Delete Spack Folder: delete_spack.md
   - Resources: namelist.md
