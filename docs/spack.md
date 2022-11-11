@@ -63,7 +63,7 @@ Add the mirror to the binary cache
 Adding parallel cluster's softwares to the Spack so that it recognises that these packages are installed. 
 Copy and paste the following into your CLI. 
 
-```
+``` linenums="1" title="packages.yaml"
 cat << EOF > $SPACK_ROOT/etc/spack/packages.yaml
 packages:
     libfabric:

@@ -17,7 +17,7 @@ ncl -h
 Now we set up the NCL X11 window size `1000 x 1000` to view the WRF output later. 
 
 
-```
+``` linenums="1" title=".hluresfile"
 cat << EOF > $HOME/.hluresfile
 *windowWorkstationClass*wkWidth  : 1000
 *windowWorkstationClass*wkHeight : 1000

@@ -31,12 +31,16 @@ Next we’ll prepare the data for a run by copying in the relevant files from ou
 
 Let's create a Slurm job submission script in the conus_12km. This file specifies the job submission script as follows:
 
-  - Using 2x Hpc6a.48xl instances 
-  - Each node has 16 MPI processes (--ntasks-per-node=16)
-  - Each node has 6 OpenMP threads (export OMP_NUM_THREADS=6)
+
+| Resource            | No. | Description                    | 
+| :------------------ | :-- | :----------------------------- |
+| `--nodes`           | 2   | Using 2x Hpc6a.48xl instances  |
+| `--ntasks-per-node` | 16  | Each node has 16 MPI processes |
+| `OMP_NUM_THREADS`   | 6   | Each node has 6 OpenMP threads |
 
 
-```
+
+``` linenums="1" title="slurm-wrf-conus12km.sh"
 cat <<EOF > slurm-wrf-conus12km.sh
 #!/bin/bash
 #!/bin/bash

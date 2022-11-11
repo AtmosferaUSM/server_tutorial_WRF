@@ -6,9 +6,9 @@ Create GFS data under `/WRF_Resources` that you just created.
     mkdir GFS_Data
     cd GFS_Data
 
-Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. Make necessary changes on the dates and hours.This python script downloads 4 data on 20210629 with 6 hours interval. Fill in `YOUR EMAIL` to avoid bad authentication. The alternatives would be download the python script and upload through DCV.
+Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. Make necessary changes on the dates and hours.This python script downloads 4 data on 20210629 with 6 hours interval. Fill in `YOUR EMAIL` (line 47) to avoid bad authentication. The alternatives would be download the python script and upload through DCV.
 
-```
+``` py linenums="1" hl_lines="47" title="download_20210629.py"
 cat <<EOF > download_20210629.py
 #!/usr/bin/env python
 #################################################################

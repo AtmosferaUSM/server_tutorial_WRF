@@ -68,7 +68,13 @@ Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
 
 ![Alt Text](images/WPS configuration/wpsconfiguration_sucessful.png)
 
-> **Clean** - to reset WPS settings!
 
-    ./clean -a
+## **Clean**
+
+!!! note
+
+    to reset WPS settings!
+        
+        ./clean -a
+
 

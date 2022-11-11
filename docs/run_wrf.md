@@ -35,7 +35,7 @@ Check the rsl.error files to ensure that the run was successful. To do that, you
 
 Now you are ready to run the `wrf.exe`. We can use the slurm to submit and distribute the tasks for us. In order for the slurm to run wrf, make sure that it is in the same directory where your wrf.exe is located. Kindly amend the information according to your need. 
 
-```
+``` linenums="1" title="slurm-wrf-penang.sh"
 cat <<EOF > slurm-wrf-penang.sh
 #!/bin/bash
 #SBATCH --job-name=WRF

@@ -12,7 +12,7 @@ theme:
   features:
     #- announce.dismiss
     #- content.code.annotate
-    #- content.tabs.link
+    - content.tabs.link
     #- content.tooltips
     #- header.autohide
     #- navigation.expand
@@ -43,12 +43,40 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-
+  icon:
+    admonition:
+      note: fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/circle-info
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
 
 # Extensions
 markdown_extensions:
   - pymdownx.critic
   - attr_list
+  # Note
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # Code Block
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  # Tabs
+  - pymdownx.tabbed:
+      alternate_style: true 
+  # Table
+  - tables
 
 plugins:
   - mkdocstrings
@@ -67,4 +95,4 @@ nav:
   - METGRID: metgrid.md
   - Running WRF: run_wrf.md
   - Delete Spack Folder: delete_spack.md
-  - Resources: namelist.md
+  - Resources: resources.md
