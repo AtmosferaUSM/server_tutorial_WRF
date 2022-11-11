@@ -604,12 +604,15 @@
 <div class="highlight"><pre><span></span><code>spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 </code></pre></div>
-<span class="critic comment">COPY INSTEAD OF USING THE SOFT LINK</span>
-<div class="highlight"><pre><span></span><code>cd /shared/scratch
-mkdir WPS
-cp -a $(spack location -i wps%intel)/. WPS/
-cd WPS
-ls
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Copy WPS folder instead of using the soft link.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cd /shared/scratch
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir WPS
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cp -a $(spack location -i wps%intel)/. WPS/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cd WPS
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ls
 </code></pre></div>
 <h2 id="jasper-installation"><strong>Jasper Installation</strong></h2>
 <div class="highlight"><pre><span></span><code>spack install jasper@2.0.31%intel
