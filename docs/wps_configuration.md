@@ -7,13 +7,18 @@ Load the compilers before you start doing anything.
     spack load intel-oneapi-compilers
     spack load intel-oneapi-mpi
 
-{>>COPY INSTEAD OF USING THE SOFT LINK<<}
+!!! Warning
 
-    cd /shared/scratch
-    mkdir WPS
-    cp -a $(spack location -i wps%intel)/. WPS/
-    cd WPS
-    ls
+    Copy WPS folder instead of using the soft link.
+
+
+```
+cd /shared/scratch
+mkdir WPS
+cp -a $(spack location -i wps%intel)/. WPS/
+cd WPS
+ls
+```
 
 ## **Jasper Installation**
 
