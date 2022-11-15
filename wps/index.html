@@ -529,6 +529,7 @@
 
 
 <h1 id="wps-installation">WPS Installation</h1>
+<p>Now, we will be creating a Slurm job submission script to install WPS using Spack.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">wps-install.sbatch</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
@@ -543,12 +544,15 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a>spack install -j 1 wps%intel ^intel-oneapi-mpi+external-libfabric
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a>EOF
 </code></pre></div></td></tr></table></div>
+<p>Submit the job by copy the following to your CLI.</p>
 <div class="highlight"><pre><span></span><code>sbatch wps-install.sbatch
 </code></pre></div>
 <h2 id="checking-the-clusters"><strong>Checking the Clusters</strong></h2>
+<p>You may check the progress of the installation. <code>CF</code> indicates that the nodes is currently under configuration while <code>R</code> indicates running nodes.</p>
 <div class="highlight"><pre><span></span><code>squeue
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/wps%20installation/squeue.png" /></p>
+<p>Use <code>cat</code> or <code>tail</code> to see the output of the installation. You shall see the successful installation message at the end of the output upon successful installation.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">cat</label><label for="__tabbed_1_2">tail</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -561,6 +565,7 @@
 </div>
 </div>
 </div>
+<p>Use Spack find to check if the version of WPS is correctly installed under the intel compilers.</p>
 <p><img alt="Alt Text" src="../images/WRF_WPS%20successful%20installation/output.png" /></p>
 <div class="highlight"><pre><span></span><code>spack find
 </code></pre></div>

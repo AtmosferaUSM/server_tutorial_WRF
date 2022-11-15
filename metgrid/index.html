@@ -557,7 +557,9 @@
 
 
 <h1 id="metgrid">METGRID</h1>
+<p>Now, you have reached the final step for the run of WPS. Metgrid will horizontally interpolate the meteorological fields from ungrib to simulation grids defined by geogrid. </p>
 <h2 id="export-the-library-path"><strong>Export the library path</strong></h2>
+<p>Just like geogrid and ungrib, export the library path.</p>
 <div class="highlight"><pre><span></span><code>export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/netcdf-fortran-4.5.4-a3txw6pecfmvci7zgwpr3p7nzlqt2k2m/lib
 </code></pre></div>
 <h2 id="load-the-compilers"><strong>Load the compilers</strong></h2>
@@ -565,6 +567,7 @@
 spack load intel-oneapi-mpi
 </code></pre></div>
 <h2 id="run-metgrid"><strong>Run metgrid</strong></h2>
+<p>Run the metgrid. There will be four output expected with the name met_em* . in this tutorial.</p>
 <div class="highlight"><pre><span></span><code>./metgrid.exe
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/metgrid/cut_successful_met_em_files.png" /></p>
