@@ -110,7 +110,7 @@
 
 === "namelist.wps"
 
-    ```
+    ``` linenums="1"
     cat <<EOF > namelist.wps
     &share
      wrf_core = 'ARW',
@@ -148,5 +148,46 @@
      fg_name = 'FILE'
     /
     EOF
+    ```
+
+=== "Common Spack Command"
+
+    Here list the command command that you will use using spack in this tutorial.
+
+    ```
+    spack load intel-oneapi-compilers
+    spack load intel-oneapi-mpi
+    ```
+    ```
+    spack load wrf
+    ```
+    ```
+    spack load wps
+    ```
+    ```
+    spack find
+    ```
+
+=== "LD_LIBRARY PATH"
+
+    ```
+    export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/netcdf-fortran-4.5.4-a3txw6pecfmvci7zgwpr3p7nzlqt2k2m/lib
+    ```
+    ```
+    export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/jasper-2.0.31-skcu73p6hnlgov6teechaq6muly2xrez/lib64/:\$LD_LIBRARY_PATH
+    ```
+
+=== "Define variables"
+
+    In case you want to define your variables again...
+
+    ``` linenums="1"
+    export JASPERLIB=$(spack location -i jasper@2.0.31%intel)/lib64
+    export JASPERINC=$(spack location -i jasper@2.0.31%intel)/include
+    export WRF_DIR=$(spack location -i wrf%intel)
+    export NETCDFINC=$(spack location -i netcdf-fortran%intel)/include
+    export NETCDFLIB=$(spack location -i netcdf-fortran%intel)/lib
+    export NETCDF=$(spack location -i netcdf-fortran%intel)
+    export NETCDFF=$(spack location -i netcdf-fortran%intel)
     ```
 
