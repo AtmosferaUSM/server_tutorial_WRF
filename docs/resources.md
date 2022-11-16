@@ -152,7 +152,7 @@
 
 === "Common Spack Command"
 
-    Here list the command command that you will use using spack in this tutorial.
+    Here list the command that you will use using Spack in this tutorial.
 
     ```
     spack load intel-oneapi-compilers
