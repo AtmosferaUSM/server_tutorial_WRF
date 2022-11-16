@@ -1,4 +1,4 @@
-[Local Link _](../WRF-ARW/resources)
+[Local Link](../WRF-ARW/resources/#namelist.wps)
 
 
 This tutorial will cover from the cluster creation using PClusterManager to the configuration and compilation of WRF Version 4.3.3 (Weather Research and Forecasting) and WPS version 4.3.1 (WRF Preprocessing System) using Spack.
