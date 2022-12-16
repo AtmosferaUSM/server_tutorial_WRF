@@ -39,6 +39,7 @@ Check if the `jasper version 2.0.31` is installed.
     export NETCDFLIB=$(spack location -i netcdf-fortran%intel)/lib
     export NETCDF=$(spack location -i netcdf-fortran%intel)
     export NETCDFF=$(spack location -i netcdf-fortran%intel)
+    export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/jasper-2.0.31-skcu73p6hnlgov6teechaq6muly2xrez/lib64=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/netcdf-fortran-4.5.4-izf5fn4mw4y4mcgdjed7jp7bypsfi3s2/lib:\$LD_LIBRARY_PATH
 
 Check if the variables are imported correctly.
 

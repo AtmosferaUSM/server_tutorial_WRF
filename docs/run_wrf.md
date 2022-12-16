@@ -38,6 +38,7 @@ Now you are ready to run the `wrf.exe`. We can use the slurm to submit and distr
 ``` linenums="1" title="slurm-wrf-penang.sh"
 cat <<EOF > slurm-wrf-penang.sh
 #!/bin/bash
+#!/bin/bash
 #SBATCH --job-name=WRF
 #SBATCH --output=penang-%j.out
 #SBATCH --nodes=2

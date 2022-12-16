@@ -96,7 +96,7 @@ Obtain the path to your GFS_Data where in this case, it is `/shared/scratch/WPS`
 
 
     cd /shared/scratch/WPS
-    ./link_grib.csh /shared/scratch/WPS/WRF_Resources/GFS_Data/gfs.*
+    ./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/gfs.*
 
 
 Create the symbolic link to the Vtable.
