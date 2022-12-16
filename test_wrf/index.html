@@ -655,6 +655,11 @@ ln -s $WRF_ROOT* .
 Submit the run using the Slurm Workload Manager.</p>
 <div class="highlight"><pre><span></span><code>sbatch slurm-wrf-conus12km.sh
 </code></pre></div>
+<p>If you ever need to cancel the run, use the command below. Change the 
+<jobid> to the job id of the run. You can determine the job id by using 
+the command <code>squeue</code>.</p>
+<div class="highlight"><pre><span></span><code>scancel &lt;jobid&gt;
+</code></pre></div>
 <h2 id="dcv"><strong>DCV</strong></h2>
 <p>Open a NICE DCV session through PCluster Manager.Once you are connected over NICE DCV, open the terminal and execute the following.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch/conus_12km 
