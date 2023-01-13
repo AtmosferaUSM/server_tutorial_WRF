@@ -58,7 +58,22 @@ Install prerequisites
 Add the mirror to the binary cache
 
     spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
-    spack buildcache keys --install --trust --force    
+    spack buildcache keys --install --trust --force   
+
+
+=== "binary_mirror"
+
+    ``` 
+    spack mirror add binary_mirror  https://binaries.spack.io/releases/v0.18
+    spack buildcache keys --install --trust
+    ```
+
+=== "aws-hpc-weather"
+
+    ``` 
+    spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
+    spack buildcache keys --install --trust --force 
+    ``` 
 
 Adding parallel cluster's softwares to the Spack so that it recognises that these packages are installed. 
 Copy and paste the following into your CLI. 
