@@ -581,10 +581,7 @@ which patchelf
 <div class="highlight"><pre><span></span><code>pip3 install botocore==1.23.46 boto3==1.20.46
 </code></pre></div>
 <p>Add the mirror to the binary cache</p>
-<div class="highlight"><pre><span></span><code>spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
-spack buildcache keys --install --trust --force
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">binary_mirror</label><label for="__tabbed_1_2">aws-hpc-weather</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Option #1</label><label for="__tabbed_1_2">Option #2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>spack mirror add binary_mirror  https://binaries.spack.io/releases/v0.18
