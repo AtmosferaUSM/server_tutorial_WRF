@@ -584,25 +584,39 @@ which patchelf
 <div class="highlight"><pre><span></span><code>spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
 spack buildcache keys --install --trust --force
 </code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">binary_mirror</label><label for="__tabbed_1_2">aws-hpc-weather</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>spack mirror add binary_mirror  https://binaries.spack.io/releases/v0.18
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>spack buildcache keys --install --trust
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>spack mirror add aws-hpc-weather s3://aws-hpc-weather/spack/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>spack buildcache keys --install --trust --force 
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Adding parallel cluster's softwares to the Spack so that it recognises that these packages are installed. 
 Copy and paste the following into your CLI. </p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">packages.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span>
-<span class="normal"><a href="#__codelineno-0-6">6</a></span>
-<span class="normal"><a href="#__codelineno-0-7">7</a></span>
-<span class="normal"><a href="#__codelineno-0-8">8</a></span>
-<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>cat &lt;&lt; EOF &gt; $SPACK_ROOT/etc/spack/packages.yaml
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>packages:
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    libfabric:
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>        variants: fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>        externals:
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>        - spec: libfabric@1.13.2 fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>          prefix: /opt/amazon/efa
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>        buildable: False
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>EOF
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">packages.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>cat &lt;&lt; EOF &gt; $SPACK_ROOT/etc/spack/packages.yaml
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>packages:
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    libfabric:
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>        variants: fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>        externals:
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>        - spec: libfabric@1.13.2 fabrics=efa,tcp,udp,sockets,verbs,shm,mrail,rxd,rxm
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>          prefix: /opt/amazon/efa
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>        buildable: False
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>EOF
 </code></pre></div></td></tr></table></div>
 
 
