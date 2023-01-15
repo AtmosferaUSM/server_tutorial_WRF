@@ -15,6 +15,7 @@ Congratulations on your successful running of WPS 🥳 Now you are just one step
 
 Edit the `namelist.input` and make necessary changes or simply overwrite the namelist from the Resources tab. The details including `&time_control` and `&domains` has to be the same as defined in the `namelist.wps`.You may change the `&physics` option here too. Refer to [UCAR Website](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html){target=_blank} for the best practices.
 
+[namelist.input file](../WRF-ARW/resources/#namelist.input)
 
     nano namelist.input
 
