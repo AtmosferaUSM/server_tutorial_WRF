@@ -642,7 +642,8 @@ cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortr
 <h2 id="edit-configurewps-file"><strong>Edit configure.wps File</strong></h2>
 <div class="highlight"><pre><span></span><code>./configure
 </code></pre></div>
-<p>If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code> then paste the <code>NETCDFINC</code> path as given above.</p>
+<p>Type '17'.
+If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code> then paste the <code>NETCDFINC</code> path as given above.</p>
 <div class="highlight"><pre><span></span><code>nano configure.wps
 </code></pre></div>
 <p>Look for <code>WRF_LIB</code> and add <code>-qopenmp</code> after <code>-lnetcdff -lnetcdf</code> then save.</p>

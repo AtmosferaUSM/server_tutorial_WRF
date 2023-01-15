@@ -560,7 +560,7 @@ mpirun -np 1 ./real.exe
 <a id="__codelineno-0-25" name="__codelineno-0-25"></a>set +x
 <a id="__codelineno-0-26" name="__codelineno-0-26"></a>module load intelmpi
 <a id="__codelineno-0-27" name="__codelineno-0-27"></a>set -x
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a>time mpirun -np $SLURM_NTASKS --ppn $SLURM_NTASKS_PER_NODE $wrf_exe
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>time mpirun -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$wrf_exe
 <a id="__codelineno-0-29" name="__codelineno-0-29"></a>EOF
 </code></pre></div></td></tr></table></div>
 <p>Submit the slurm job. You can check the run by <code>squeue</code>.</p>
