@@ -113,7 +113,6 @@ Now, it is time to edit the `namelist.wps`. Below are the few things that should
 - end date 
 - the interval seconds that desribe the interval between your GFS data
 
-[namelist.wps file](../resources/#namelist.wps)
 
 ```
 nano namelist.wps
