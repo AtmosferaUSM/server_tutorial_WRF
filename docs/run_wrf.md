@@ -63,7 +63,7 @@ export I_MPI_DEBUG=4
 set +x
 module load intelmpi
 set -x
-time mpirun -np $SLURM_NTASKS --ppn $SLURM_NTASKS_PER_NODE $wrf_exe
+time mpirun -np \$SLURM_NTASKS --ppn \$SLURM_NTASKS_PER_NODE \$wrf_exe
 EOF
 ```
 

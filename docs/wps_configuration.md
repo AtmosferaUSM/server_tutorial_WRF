@@ -58,6 +58,7 @@ Then, copy the contents of lib and include of `netcdf-c` to `netcdf-fortran` of 
 
     ./configure
 
+Type '17'.
 If you did not set the path for `NETCDFINC`, type `Y` then paste the `NETCDFINC` path as given above.
 
 
