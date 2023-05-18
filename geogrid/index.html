@@ -418,6 +418,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#view-and-adjust-namelistwps-to-fully-cover-the-domain-interested-before-running-the-simulations" class="md-nav__link">
+    View and Adjust namelist.wps to fully cover the domain interested before running the simulations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-plots-in-pdf-format" class="md-nav__link">
+    Create plots in pdf format
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -555,6 +569,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#view-and-adjust-namelistwps-to-fully-cover-the-domain-interested-before-running-the-simulations" class="md-nav__link">
+    View and Adjust namelist.wps to fully cover the domain interested before running the simulations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-plots-in-pdf-format" class="md-nav__link">
+    Create plots in pdf format
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -572,7 +600,7 @@
 
 <h1 id="geogrid">Geogrid</h1>
 <h2 id="preliminary"><strong>Preliminary</strong></h2>
-<p>Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named <code>WRF_Resources</code> to put all the required input data for WPS. We will download all the required data under the <code>/scratch</code> folder.</p>
+<p>Before we start executing geogrid.exe, ungrib.exe and metgrid.exe, create a folder named <code>WRF_Resources</code> to put all the required input data for WPS. We will download all the required data under the <code>/scratch</code> folder. If you have downloaded them, proceed to edit the &amp;geogrid section in the namelist.wps.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch
 mkdir WRF_Resources
 cd WRF_Resources
@@ -605,6 +633,30 @@ spack load intel-oneapi-mpi
 </code></pre></div>
 <p>If your geogrid runs successfully, the following output will be printed: <code>Successful completion of geogrid.</code></p>
 <p><img alt="Alt Text" src="../images/geogrid/successful%20output.png" /></p>
+<h2 id="view-and-adjust-namelistwps-to-fully-cover-the-domain-interested-before-running-the-simulations"><strong>View and Adjust namelist.wps to fully cover the domain interested before running the simulations</strong></h2>
+<p>First, open a nice DCV session. Go to the WPS diectory, which in this case it is <code>/shared/scratch/WPS/</code>. Now we are going to load the ncl package using Spack.</p>
+<div class="highlight"><pre><span></span><code>spack load ncl
+</code></pre></div>
+<p>Now, type the following command to view the plot. Pay attention to use the new script as it is written for NCL version 6.2 or later.</p>
+<div class="highlight"><pre><span></span><code>ncl util/plotgrids_new.ncl
+</code></pre></div>
+<p>You have successfully created the plot using DCV! Now repeat the previous process of editing the namelist to adjust the simulation cover the interested domain and you are good to go! Be noted that this is for temporary viewing only. Proceed to the next section if you want to save your file locally.</p>
+<p><img alt="Alt Text" src="images/geogrid/1.png" /></p>
+<h2 id="create-plots-in-pdf-format"><strong>Create plots in pdf format</strong></h2>
+<p>To export the image to pdf in the cluster, we are going to edit the ncl script in the util folder.</p>
+<div class="highlight"><pre><span></span><code>cd /shared/scratch/WPS/util
+vim plotgrids_new.ncl
+</code></pre></div>
+<p>Look for the part where it starts with: <code>We generate plots, but what kind do we prefer?</code>. Change the type from <code>x11</code> to <code>pdf</code> and save. After <code>x11</code> describes the title, so you can name your file whatever you want. In this case, we will name it as <code>DOMAIN</code>.</p>
+<p><img alt="Alt Text" src="images/geogrid/2.png" /></p>
+<p>Run the ncl script in the WPS folder again using s DCV session. If successful, you will see a file named as DOMAIN.pdf.</p>
+<p><img alt="Alt Text" src="images/geogrid/3.png" /></p>
+<p>Now, we are going to export the file to local computer. Copy the DOMAIN.pdf to the home directory.</p>
+<div class="highlight"><pre><span></span><code>cp DOMAIN.pdf /home/ec2-user
+</code></pre></div>
+<p>Export the file from DCV session by clicking the file storage icon. Choose the file interested and click <code>Actions</code> to download the file.</p>
+<p><img alt="Alt Text" src="images/geogrid/4.png" /></p>
+<p><img alt="Alt Text" src="images/geogrid/5.png" /></p>
 
 
 
