@@ -1,5 +1,7 @@
 # Intel Compiler Installation
 
+Run the following command to install Intel Compilers on Spack.
+
     spack install --no-cache intel-oneapi-compilers@2022.0.2
 
 Check that the compiler is installed.
