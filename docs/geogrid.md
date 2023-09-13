@@ -60,7 +60,7 @@ Now, type the following command to view the plot. Pay attention to use the new s
 
 You have successfully created the plot using DCV! Now repeat the previous process of editing the namelist to adjust the simulation cover the interested domain and you are good to go! Be noted that this is for temporary viewing only. Proceed to the next section if you want to save your file locally.
 
-![Alt Text](images/geogrid/1.png)
+![Alt Text](images/geogrid/1.PNG)
 
 ## **Create plots in pdf format**
 
@@ -71,11 +71,11 @@ To export the image to pdf in the cluster, we are going to edit the ncl script i
 
 Look for the part where it starts with: `We generate plots, but what kind do we prefer?`. Change the type from `x11` to `pdf` and save. After `x11` describes the title, so you can name your file whatever you want. In this case, we will name it as `DOMAIN`.
 
-![Alt Text](images/geogrid/2.png)
+![Alt Text](images/geogrid/2.PNG)
 
 Run the ncl script in the WPS folder again using s DCV session. If successful, you will see a file named as DOMAIN.pdf.
 
-![Alt Text](images/geogrid/3.png)
+![Alt Text](images/geogrid/3.PNG)
 
 Now, we are going to export the file to local computer. Copy the DOMAIN.pdf to the home directory.
 
@@ -83,7 +83,7 @@ Now, we are going to export the file to local computer. Copy the DOMAIN.pdf to t
 
 Export the file from DCV session by clicking the file storage icon. Choose the file interested and click `Actions` to download the file.
 
-![Alt Text](images/geogrid/4.png)
+![Alt Text](images/geogrid/4.PNG)
 
-![Alt Text](images/geogrid/5.png)
+![Alt Text](images/geogrid/5.PNG)
 
