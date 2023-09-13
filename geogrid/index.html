@@ -641,22 +641,22 @@ spack load intel-oneapi-mpi
 <div class="highlight"><pre><span></span><code>ncl util/plotgrids_new.ncl
 </code></pre></div>
 <p>You have successfully created the plot using DCV! Now repeat the previous process of editing the namelist to adjust the simulation cover the interested domain and you are good to go! Be noted that this is for temporary viewing only. Proceed to the next section if you want to save your file locally.</p>
-<p><img alt="Alt Text" src="images/geogrid/1.png" /></p>
+<p><img alt="Alt Text" src="../images/geogrid/1.PNG" /></p>
 <h2 id="create-plots-in-pdf-format"><strong>Create plots in pdf format</strong></h2>
 <p>To export the image to pdf in the cluster, we are going to edit the ncl script in the util folder.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch/WPS/util
 vim plotgrids_new.ncl
 </code></pre></div>
 <p>Look for the part where it starts with: <code>We generate plots, but what kind do we prefer?</code>. Change the type from <code>x11</code> to <code>pdf</code> and save. After <code>x11</code> describes the title, so you can name your file whatever you want. In this case, we will name it as <code>DOMAIN</code>.</p>
-<p><img alt="Alt Text" src="images/geogrid/2.png" /></p>
+<p><img alt="Alt Text" src="../images/geogrid/2.PNG" /></p>
 <p>Run the ncl script in the WPS folder again using s DCV session. If successful, you will see a file named as DOMAIN.pdf.</p>
-<p><img alt="Alt Text" src="images/geogrid/3.png" /></p>
+<p><img alt="Alt Text" src="../images/geogrid/3.PNG" /></p>
 <p>Now, we are going to export the file to local computer. Copy the DOMAIN.pdf to the home directory.</p>
 <div class="highlight"><pre><span></span><code>cp DOMAIN.pdf /home/ec2-user
 </code></pre></div>
 <p>Export the file from DCV session by clicking the file storage icon. Choose the file interested and click <code>Actions</code> to download the file.</p>
-<p><img alt="Alt Text" src="images/geogrid/4.png" /></p>
-<p><img alt="Alt Text" src="images/geogrid/5.png" /></p>
+<p><img alt="Alt Text" src="../images/geogrid/4.PNG" /></p>
+<p><img alt="Alt Text" src="../images/geogrid/5.PNG" /></p>
 
 
 
