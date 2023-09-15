@@ -6,28 +6,52 @@ Create GFS data under `/WRF_Resources` that you just created.
     mkdir GFS_Data
     cd GFS_Data
 
-Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. Make necessary changes on the dates and hours.This python script downloads 4 data on 20210629 with 6 hours interval. Fill in `YOUR EMAIL` (line 47) to avoid bad authentication. The alternatives would be download the python script and upload through DCV.
+Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. 
+
 
 ``` py linenums="1" hl_lines="47" title="download_20210629.py"
-cat <<EOF > download_20210629.py
+cat <<EOF > gfs_downloader.py
 #!/usr/bin/env python
-#################################################################
-# Python Script to retrieve 4 online Data files of 'ds084.1',
-# total 2.06G. This script uses 'requests' to download data.
-#
-# Highlight this script by Select All, Copy and Paste it into a file;
-# make the file executable and run it on command line.
-#
-# You need pass in your password as a parameter to execute
-# this script; or you can set an environment variable RDAPSWD
-# if your Operating System supports it.
-#
-# Contact rdahelp@ucar.edu (RDA help desk) for further assistance.
-#################################################################
-
 
 import sys, os
 import requests
+from datetime import datetime, timedelta
+
+def download_file(session, filename, cookies, output_file_path):
+    print('Downloading', os.path.basename(filename))
+    req = session.get(filename, cookies=cookies, allow_redirects=True, stream=True)
+
+    with open(output_file_path, 'wb') as outfile:
+        for chunk in req.iter_content(chunk_size=32768):  # Increased chunk size for potentially faster downloads
+            outfile.write(chunk)
+
+    file_size = os.path.getsize(output_file_path) / (1024 * 1024)
+    print(f"{os.path.basename(filename)} download completed. File size: {file_size:.2f} MB")
+    
+def generate_filelist(start_date, end_date, hours_interval):
+    s_date = datetime.strptime(start_date, "%Y/%m/%d")
+    e_date = datetime.strptime(end_date, "%Y/%m/%d")
+    
+    # Generate the list of dates between start and end dates
+    dates = []
+    while s_date <= e_date:
+        dates.append(s_date)
+        s_date += timedelta(days=1)
+
+    # Generate the file paths based on the given hour interval and the dates
+    filepaths = []
+    for idx, date in enumerate(dates):
+        max_hour = 24 if idx != len(dates)-1 else 1
+        for hour in range(0, max_hour, hours_interval):
+            filepath = "{}/{}/gfs.0p25.{}{:02d}.f000.grib2".format(
+                date.strftime("%Y"),
+                date.strftime("%Y%m%d"),
+                date.strftime("%Y%m%d"),
+                hour
+            )
+            filepaths.append(filepath)
+
+    return filepaths
 
 def check_file_status(filepath, filesize):
     sys.stdout.write('\r')
@@ -37,59 +61,72 @@ def check_file_status(filepath, filesize):
     sys.stdout.write('%.3f %s' % (percent_complete, '% Completed'))
     sys.stdout.flush()
 
-# Try to get password
-if len(sys.argv) < 2 and not 'RDAPSWD' in os.environ:
+# Check for 3 arguments now (script name, username, and password)
+if len(sys.argv) < 3 and not 'RDAUSR' in os.environ: 
     try:
         import getpass
-        input = getpass.getpass
     except:
         try:
-            input = raw_input
+            input = raw_input  # For Python 2
         except:
             pass
-    pswd = input('Password: ')
+    usr = input('Username: ')
+    pswd = getpass.getpass('Password: ')  # Use getpass just for the password
 else:
     try:
-        pswd = sys.argv[1]
+        usr = sys.argv[1]
+        pswd = sys.argv[2]
     except:
+        usr = os.environ['RDAUSR']
         pswd = os.environ['RDAPSWD']
 
 url = 'https://rda.ucar.edu/cgi-bin/login'
-values = {'email' : 'YOUR EMAIL', 'passwd' : pswd, 'action' : 'login'}
+values = {'email' : usr, 'passwd' : pswd, 'action' : 'login'}
+
 # Authenticate
 ret = requests.post(url,data=values)
+
+
 if ret.status_code != 200:
     print('Bad Authentication')
     print(ret.text)
     exit(1)
-dspath = 'https://rda.ucar.edu/data/ds084.1/'
-filelist = [
-'2021/20210629/gfs.0p25.2021062900.f000.grib2',
-'2021/20210629/gfs.0p25.2021062906.f000.grib2',
-'2021/20210629/gfs.0p25.2021062912.f000.grib2',
-'2021/20210629/gfs.0p25.2021062918.f000.grib2']
+dspath = 'https://data.rda.ucar.edu/ds084.1/'
+
+# Get user input using standard input
+start_date = input("start date (format: YYYY/MM/DD): ")
+end_date = input("end date (format: YYYY/MM/DD): ")
+hours = int(input("hours: "))
+
+filelist = generate_filelist(start_date, end_date, hours)
+for item in filelist:
+    print(item)
+
+print('\n')
+
+# Create a directory based on the start and end dates
+folder_name = "{}_{}".format(start_date.replace("/", "-"), end_date.replace("/", "-"))
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+
+    
+session = requests.Session()
+
 for file in filelist:
-    filename=dspath+file
+    filename = dspath + file
     file_base = os.path.basename(file)
-    print('Downloading',file_base)
-    req = requests.get(filename, cookies = ret.cookies, allow_redirects=True, stream=True)
-    filesize = int(req.headers['Content-length'])
-    with open(file_base, 'wb') as outfile:
-        chunk_size=1048576
-        for chunk in req.iter_content(chunk_size=chunk_size):
-            outfile.write(chunk)
-            if chunk_size < filesize:
-                check_file_status(file_base, filesize)
-    check_file_status(file_base, filesize)
-    print()
+    output_file_path = os.path.join(folder_name, file_base)
+    
+    # Download files sequentially
+    download_file(session, filename, ret.cookies, output_file_path)    
 EOF
 ```
 
 
-Execute the python script to download the data. You must be a registered user on the NCAR website because you will be asked for password before the permission to download the data is granted.
+Execute the python script to download the data. You must be a registered user on the NCAR website because you will be asked for password before the permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.
 
     pip3 install requests    
-    python3 download_20210629.py
+    python3 gfs_downloader.py
 
 
 Obtain the path to your GFS_Data where in this case, it is `/shared/scratch/WPS`. Go back to the directory where your WPS is compiled and create the symbolic link to the GFS data that you just downloaded. You should expect four GRIBFILE with same prefix but different labels behind, AAA, AAB, AAC and AAD.
