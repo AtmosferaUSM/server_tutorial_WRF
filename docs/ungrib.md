@@ -9,7 +9,7 @@ Create GFS data under `/WRF_Resources` that you just created.
 Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. 
 
 
-``` py linenums="1" hl_lines="47" title="download_20210629.py"
+``` py linenums="1" title="download_20210629.py"
 cat <<EOF > gfs_downloader.py
 #!/usr/bin/env python
 
