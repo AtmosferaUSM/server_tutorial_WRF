@@ -96,7 +96,7 @@ dspath = 'https://data.rda.ucar.edu/ds084.1/'
 # Get user input using standard input
 start_date = input("start date (format: YYYY/MM/DD): ")
 end_date = input("end date (format: YYYY/MM/DD): ")
-hours = int(input("hours: "))
+hours = int(input("hours interval (e.g., 6): "))
 
 filelist = generate_filelist(start_date, end_date, hours)
 for item in filelist:
