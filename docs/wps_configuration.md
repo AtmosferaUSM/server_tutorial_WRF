@@ -79,6 +79,9 @@ Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
 
 ![Alt Text](images/WPS configuration/wpsconfiguration_sucessful.png)
 
+    ls
+
+![Alt Text](images/WPS configuration/after compile.jpeg)
 
 ## **Clean**
 
