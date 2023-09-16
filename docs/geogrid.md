@@ -48,6 +48,11 @@ If your geogrid runs successfully, the following output will be printed: `Succes
 
 ![Alt Text](images/geogrid/successful output.png)
 
+    ls
+
+![Alt Text](images/geogrid/after running geogrid.jpeg)
+
+
 ## **View and Adjust namelist.wps to fully cover the domain interested before running the simulations**
 
 First, open a nice DCV session. Go to the WPS diectory, which in this case it is `/shared/scratch/WPS/`. Now we are going to load the ncl package using Spack.

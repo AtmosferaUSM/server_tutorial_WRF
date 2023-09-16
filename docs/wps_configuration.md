@@ -69,6 +69,10 @@ Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
 
 ![Alt Text](images/WPS configuration/add_qopenmp.png)
 
+    ls
+
+![Alt Text](images/WPS configuration/before compile.jpeg)
+
 ## **Compile**  
     
     ./compile > log.compile
