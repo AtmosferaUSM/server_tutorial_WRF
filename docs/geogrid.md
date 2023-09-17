@@ -47,7 +47,7 @@ If `geogrid.exe` runs successfully, the following output will be printed: `Succe
 
 ![Alt Text](images/geogrid/successful output.png)
 
-The files that will be created by the run will be in the folder. They are shown in the image below:
+The files that are created by the run will be in the folder. They are shown in the image below:
 
     ls
 
