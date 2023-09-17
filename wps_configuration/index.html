@@ -677,13 +677,13 @@
 
 <h1 id="wps-configuration">WPS Configuration</h1>
 <h2 id="create-a-soft-link-for-the-wps"><strong>Create a soft link for the WPS</strong></h2>
-<p>Load the compilers before you start doing anything.</p>
+<p>Load the compilers before you do anything.</p>
 <div class="highlight"><pre><span></span><code>spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Copy WPS folder instead of using the soft link.</p>
+<p>Copy the WPS folder instead of using soft links.</p>
 </div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cd /shared/scratch
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir WPS
@@ -692,6 +692,7 @@ spack load intel-oneapi-mpi
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ls
 </code></pre></div>
 <h2 id="jasper-installation"><strong>Jasper Installation</strong></h2>
+<p>Jasper is needed for WPS, so you have to install it.</p>
 <div class="highlight"><pre><span></span><code>spack install jasper@2.0.31%intel
 </code></pre></div>
 <p>Check if the <code>jasper version 2.0.31</code> is installed.</p>
@@ -699,6 +700,7 @@ spack load intel-oneapi-mpi
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/WPS%20configuration/jasper_2.0.31.png" /></p>
 <h2 id="export"><strong>Export</strong></h2>
+<p>Export the paths needed for WPS to work.</p>
 <div class="highlight"><pre><span></span><code>export JASPERLIB=$(spack location -i jasper@2.0.31%intel)/lib64
 export JASPERINC=$(spack location -i jasper@2.0.31%intel)/include
 export WRF_DIR=$(spack location -i wrf%intel)
@@ -712,19 +714,21 @@ export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/j
 <div class="highlight"><pre><span></span><code>echo $NETCDFINC
 echo $NETCDFLIB
 </code></pre></div>
-<p>Then, copy the contents of lib and include of <code>netcdf-c</code> to <code>netcdf-fortran</code> of the intel compilers.</p>
+<p>Copy the contents of <code>lib</code> and include <code>netcdf-c</code> to <code>netcdf-fortran</code> of the Intel compilers.</p>
 <div class="highlight"><pre><span></span><code>cp -a $(spack location -i netcdf-c%intel)/include/. $(spack location -i netcdf-fortran%intel)/include/
 cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortran%intel)/lib/
 </code></pre></div>
 <h2 id="edit-configurewps-file"><strong>Edit configure.wps File</strong></h2>
+<p>Configure the WPS installation.</p>
 <div class="highlight"><pre><span></span><code>./configure
 </code></pre></div>
-<p>Type '17'.
-If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code> then paste the <code>NETCDFINC</code> path as given above.</p>
+<p>Choose '17', for Intel serial compilers.</p>
+<p>If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code>, then paste the <code>NETCDFINC</code> paths as given above.</p>
 <div class="highlight"><pre><span></span><code>nano configure.wps
 </code></pre></div>
 <p>Look for <code>WRF_LIB</code> and add <code>-qopenmp</code> after <code>-lnetcdff -lnetcdf</code> then save.</p>
 <p><img alt="Alt Text" src="../images/WPS%20configuration/add_qopenmp.png" /></p>
+<p>Before compiling, notice the original copied files of WPS. You can view them by typing:</p>
 <div class="highlight"><pre><span></span><code>ls
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/WPS%20configuration/before%20compile.jpeg" /></p>
@@ -732,6 +736,7 @@ If you did not set the path for <code>NETCDFINC</code>, type <code>Y</code> then
 <div class="highlight"><pre><span></span><code>./compile &gt; log.compile
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/WPS%20configuration/wpsconfiguration_sucessful.png" /></p>
+<p>After compiling, you should see new files created in the folder. You can view them by typing:</p>
 <div class="highlight"><pre><span></span><code>ls
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/WPS%20configuration/after%20compile.jpeg" /></p>
