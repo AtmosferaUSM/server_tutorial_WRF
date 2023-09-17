@@ -6,7 +6,7 @@ Create GFS data under `/WRF_Resources` that you just created.
     mkdir GFS_Data
     cd GFS_Data
 
-Before you start using the python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. 
+Before you start using the Python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a Python script to download the GFS Data. 
 
 
 ``` py linenums="1" title="gfs_downloader.py"
@@ -123,17 +123,17 @@ EOF
 ```
 
 
-Execute the python script to download the data. You must be a registered user on the NCAR website because you will be asked for password before the permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.
+Execute the Python script to download the data. You must be a registered user on the NCAR website because you will be asked for a password before permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.
 
     pip3 install requests    
     python3 gfs_downloader.py
 
 
-Obtain the path to your GFS_Data where in this case, it is `/shared/scratch/WPS`. Go back to the directory where your WPS is compiled and create the symbolic link to the GFS data that you just downloaded. You should expect four GRIBFILE with same prefix but different labels behind, AAA, AAB, AAC and AAD.
+Obtain the path to your `GFS_Data`, where, in this case, it is `/shared/scratch/WPS`. Go back to the directory where your WPS is compiled and create the symbolic links to the GFS data that you just downloaded. You should expect four GRIBFILE with the same prefix but different labels behind, `AAA`, `AAB`, `AAC` and `AAD`.
 
 
     cd /shared/scratch/WPS
-    ./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/gfs.*
+    ./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/folder_name/gfs.*
 
 
 Create the symbolic link to the Vtable.
@@ -144,11 +144,11 @@ Create the symbolic link to the Vtable.
 ![Alt Text](images/ungrib/four_gribfiles_and_vtable.png)
 
 
-Now, it is time to edit the `namelist.wps`. Below are the few things that should be amended according to the GFS data. 
+Now, it is time to edit the `namelist.wps`. Below are a few things that should be amended according to the GFS data: 
 
 - start date 
 - end date 
-- the interval seconds that desribe the interval between your GFS data
+- the interval seconds that describe the interval of your GFS data
 
 
 ```
@@ -165,12 +165,12 @@ Export the library path.
     export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/jasper-2.0.31-skcu73p6hnlgov6teechaq6muly2xrez/lib64/:\$LD_LIBRARY_PATH
 
 
-Run the ungrib.
+Run the `ungrib`.
 
     ./ungrib.exe
 
 
-You will see the successful output printed out at the completion of ungrib.exe and four output with prefix FILE are created.
+You will see the successful output printed out after `ungrib.exe` and four outputs with the prefix `FILE` are created.
 
 ![Alt Text](images/ungrib/successful_ungrib_output_printed.png)
 ![Alt Text](images/ungrib/screenshot_four output_of_prefix_FILE.png)

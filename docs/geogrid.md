@@ -18,7 +18,7 @@ You can download the mandatory high-resolution data from the official website of
 
 ## **Edit the geog_data_path in the namelist.wps**   
 
-Point the directory of high-resolution data to WRF_Resources in the `nameslist.wps`. To do that, you will first have to obtain the path to `WPS_GEOG`.
+Point the directory of high-resolution data to WRF_Resources in the `nameslist.wps`. To do that, you must first obtain the path to `WPS_GEOG`.
 
     cd WPS_GEOG
     pwd
@@ -34,7 +34,7 @@ Under the `&geogrid` section, edit the `geog_data_path` and save it.
 
 ## **Edit the &geogrid section in namelist.wps** 
 
-Before executing `geogrid.exe`, edit the information in the namelist according to your case. Read the description for each listed variable in the namelist, as well as [best practice](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html){target=_blank} here. We will be using the information provided in the Resources tab in this tutorial. 
+Before executing `geogrid.exe`, edit the information in the namelist according to your case. Read the description for each listed variable in the namelist, as well as [best practice](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html){target=_blank} here. We will use the information provided in the Resources tab in this tutorial. 
 
 Export the `LD_LIBRARY_PATH` and run the `geogrid.exe`. Ensure you had loaded the `intel-oneapi-compilers` and `intel-oneapi-mpi` using `spack` to avoid the issue of missing `libiomp5.so`. 
 
@@ -60,7 +60,7 @@ First, open a nice DCV session. Go to the WPS directory, which in this case is `
 
     spack load ncl
 
-Now, type the following command to view the plot. Pay attention to the use of the new script as it is written for NCL version 6.2 or later.
+Now, type the following command to view the plot. Pay attention to using the new script as it is written for NCL version 6.2 or later.
 
     ncl util/plotgrids_new.ncl
 
@@ -72,7 +72,7 @@ Now repeat the previous process of editing the namelist to adjust the simulation
 
 ## **Create plots in pdf format**
 
-To export the image to PDF in the cluster, we are going to edit the `ncl` script in the `util` folder.
+To export the image to PDF in the cluster, we will edit the `ncl` script in the `util` folder.
 
     cd /shared/scratch/WPS/util
     vim plotgrids_new.ncl
