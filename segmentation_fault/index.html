@@ -658,10 +658,12 @@
 <p>You can try to lower the file size by running <code>metgrid.exe</code> using smaller domains, e.g., 125-by-100 and 82-by-82 domains. You might also need to <code>geogrid.exe</code> and <code>ungrib.exe</code> before running <code>metgrid.exe</code>. </p>
 <p>After running <code>metgrid.exe</code>, monitor the file size and adjust the <code>namelist.wps</code> accordingly.</p>
 <h2 id="when-running-wrfexe">When running wrf.exe</h2>
-<p>This fault could also occur when running WRF using domains that are too small. The WRF documentation on <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> states that it is not advisable to run WRF on a domain of less than 100-by-100. So, optimize the domain size when using WPS and WRF.</p>
+<p>This fault could also occur when running WRF using too small domains. The WRF documentation on <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> states that it is not advisable to run WRF on a domain of less than 100-by-100. So, optimize the domain size when using WPS and WRF. </p>
+<p>An example error for when the domain is too small is shown below.</p>
+<p><img alt="Too small domain WRF error" src="../images/segmentation_fault/seg_fault_small_domain.png" /></p>
 <h2 id="segmentation-fault-and-nano">Segmentation fault and nano</h2>
-<p>If it does occur, you will not be able to use <code>nano</code> to view and edit files. To regain control of <code>nano</code>, you must terminate the session and log back in the cluster. It should be working, then. </p>
-<p>Remember that the compilers must be loaded every time you log back in the cluster. You can load them by running the commands:</p>
+<p>If it does occur, you cannot use <code>nano</code> to view and edit files. To regain control of <code>nano</code>, you must terminate the session and log back in the cluster. It should be working, then. </p>
+<p>Remember that the compilers must be loaded whenever you log back into the cluster. You can load them by running the commands:</p>
 <div class="highlight"><pre><span></span><code>spack load intel-oneapi-compilers
 spack load intel-oneapi-mpi
 </code></pre></div>
