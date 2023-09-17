@@ -2,14 +2,14 @@
 
 ## **Create a soft link for the WPS**
 
-Load the compilers before you start doing anything.
+Load the compilers before you do anything.
     
     spack load intel-oneapi-compilers
     spack load intel-oneapi-mpi
 
 !!! Warning
 
-    Copy WPS folder instead of using the soft link.
+    Copy the WPS folder instead of using soft links.
 
 
 ```
@@ -22,6 +22,8 @@ ls
 
 ## **Jasper Installation**
 
+Jasper is needed for WPS, so you have to install it.
+
     spack install jasper@2.0.31%intel
 
 Check if the `jasper version 2.0.31` is installed.
@@ -30,7 +32,9 @@ Check if the `jasper version 2.0.31` is installed.
 
 ![Alt Text](images/WPS configuration/jasper_2.0.31.png)
 
-## **Export**   
+## **Export**
+
+Export the paths needed for WPS to work.
 
     export JASPERLIB=$(spack location -i jasper@2.0.31%intel)/lib64
     export JASPERINC=$(spack location -i jasper@2.0.31%intel)/include
@@ -46,7 +50,7 @@ Check if the variables are imported correctly.
     echo $NETCDFINC
     echo $NETCDFLIB
     
-Then, copy the contents of lib and include of `netcdf-c` to `netcdf-fortran` of the intel compilers.
+Copy the contents of `lib` and include `netcdf-c` to `netcdf-fortran` of the Intel compilers.
 
     cp -a $(spack location -i netcdf-c%intel)/include/. $(spack location -i netcdf-fortran%intel)/include/
     cp -a $(spack location -i netcdf-c%intel)/lib/. $(spack location -i netcdf-fortran%intel)/lib/ 
@@ -56,10 +60,14 @@ Then, copy the contents of lib and include of `netcdf-c` to `netcdf-fortran` of 
 
 ## **Edit configure.wps File**   
 
+Configure the WPS installation.
+
     ./configure
 
-Type '17'.
-If you did not set the path for `NETCDFINC`, type `Y` then paste the `NETCDFINC` path as given above.
+
+Choose '17', for Intel serial compilers.
+
+If you did not set the path for `NETCDFINC`, type `Y`, then paste the `NETCDFINC` paths as given above.
 
 
     nano configure.wps
@@ -68,6 +76,8 @@ If you did not set the path for `NETCDFINC`, type `Y` then paste the `NETCDFINC`
 Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
 
 ![Alt Text](images/WPS configuration/add_qopenmp.png)
+
+Before compiling, notice the original copied files of WPS. You can view them by typing:
 
     ls
 
@@ -78,6 +88,8 @@ Look for `WRF_LIB` and add `-qopenmp` after `-lnetcdff -lnetcdf` then save.
     ./compile > log.compile
 
 ![Alt Text](images/WPS configuration/wpsconfiguration_sucessful.png)
+
+After compiling, you should see new files created in the folder. You can view them by typing:
 
     ls
 
