@@ -96,3 +96,4 @@ nav:
   - Running WRF: run_wrf.md
   - Delete Spack Folder: delete_spack.md
   - Resources: resources.md
+  - Segmentation Fault: segmentation_fault.md

@@ -91,6 +91,9 @@ Submit the slurm job. You can check the run by `squeue`.
     spack load wrf
     sbatch slurm-wrf-penang.sh
 
+You can cancel a `slurm` job by using the command:
+
+    scancel <jobid>
 
 Check the `rsl.out.0000` file to see if the run was successful. 
 
