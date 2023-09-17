@@ -84,8 +84,11 @@ Before compiling, notice the original copied files of WPS. You can view them by 
 ![Alt Text](images/WPS configuration/before compile.jpeg)
 
 ## **Compile**  
+
+The compilation of the executables can begin. The files that will be created are `geogrid.exe`, `metgrid.exe`, and `ungrib.exe`.
     
     ./compile > log.compile
+
 
 ![Alt Text](images/WPS configuration/wpsconfiguration_sucessful.png)
 
