@@ -557,6 +557,25 @@
   
 
     
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../segmentation_fault/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segmentation Fault
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -703,6 +722,9 @@ mpirun -np 1 ./real.exe
 spack load intel-oneapi-mpi
 spack load wrf
 sbatch slurm-wrf-penang.sh
+</code></pre></div>
+<p>You can cancel a <code>slurm</code> job by using the command:</p>
+<div class="highlight"><pre><span></span><code>scancel &lt;jobid&gt;
 </code></pre></div>
 <p>Check the <code>rsl.out.0000</code> file to see if the run was successful. </p>
 <p>You will see a successful message printed at the end of the file.</p>

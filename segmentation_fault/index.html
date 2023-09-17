@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../ncl/">
+        <link rel="prev" href="../resources/">
       
-      
-        <link rel="next" href="../test_wrf/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>WPS Installation - WRF-ARW installation on AWS using SPACK</title>
+        <title>Segmentation Fault - WRF-ARW installation on AWS using SPACK</title>
       
     
     
@@ -118,7 +116,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#wps-installation" class="md-skip">
+        <a href="#segmentation-fault-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -154,7 +152,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              WPS Installation
+              Segmentation Fault
             
           </span>
         </div>
@@ -343,29 +341,9 @@
       
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    WPS Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../wps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -374,33 +352,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#checking-the-clusters" class="md-nav__link">
-    Checking the Clusters
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -561,9 +512,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../segmentation_fault/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Segmentation Fault
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -572,6 +543,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-running-realexe" class="md-nav__link">
+    When running real.exe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-running-wrfexe" class="md-nav__link">
+    When running wrf.exe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmentation-fault-and-nano" class="md-nav__link">
+    Segmentation fault and nano
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -603,8 +615,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#checking-the-clusters" class="md-nav__link">
-    Checking the Clusters
+  <a href="#when-running-realexe" class="md-nav__link">
+    When running real.exe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-running-wrfexe" class="md-nav__link">
+    When running wrf.exe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmentation-fault-and-nano" class="md-nav__link">
+    Segmentation fault and nano
   </a>
   
 </li>
@@ -624,48 +650,21 @@
                   
 
 
-<h1 id="wps-installation">WPS Installation</h1>
-<p>Now, we will be creating a Slurm job submission script to install WPS using Spack.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">wps-install.sbatch</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span>
-<span class="normal"><a href="#__codelineno-0-6">6</a></span>
-<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>cat &lt;&lt;EOF &gt; wps-install.sbatch
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>#!/bin/bash
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>#SBATCH -N 1
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>#SBATCH --exclusive
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>spack install -j 1 wps%intel ^intel-oneapi-mpi+external-libfabric
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>EOF
-</code></pre></div></td></tr></table></div>
-<p>Submit the job by copy the following to your CLI.</p>
-<div class="highlight"><pre><span></span><code>sbatch wps-install.sbatch
+<h1 id="segmentation-fault-notes">Segmentation Fault Notes</h1>
+<p>This section concerns our observations as we worked on WPS and WRF on Pcluster.</p>
+<h2 id="when-running-realexe">When running real.exe</h2>
+<p>Segmentation fault would occur frequently during the processing of WRF input files, such as the <code>met_em</code> files, using <code>real.exe</code>. </p>
+<p>The application <code>real.exe</code> would crash when the <code>met_em</code> files are too big, e.g., more than 10 MB. Runs with 15 MB or 22 MB files have crashed. This might be rectified if the head node is bigger. The current one is <code>c5a.xlarge</code>.</p>
+<p>You can try to lower the file size by running <code>metgrid.exe</code> using smaller domains, e.g., 125-by-100 and 82-by-82 domains. You might also need to <code>geogrid.exe</code> and <code>ungrib.exe</code> before running <code>metgrid.exe</code>. </p>
+<p>After running <code>metgrid.exe</code>, monitor the file size and adjust the <code>namelist.wps</code> accordingly.</p>
+<h2 id="when-running-wrfexe">When running wrf.exe</h2>
+<p>This fault could also occur when running WRF using domains that are too small. The WRF documentation on <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> states that it is not advisable to run WRF on a domain of less than 100-by-100. So, optimize the domain size when using WPS and WRF.</p>
+<h2 id="segmentation-fault-and-nano">Segmentation fault and nano</h2>
+<p>If it does occur, you will not be able to use <code>nano</code> to view and edit files. To regain control of <code>nano</code>, you must terminate the session and log back in the cluster. It should be working, then. </p>
+<p>Remember that the compilers must be loaded every time you log back in the cluster. You can load them by running the commands:</p>
+<div class="highlight"><pre><span></span><code>spack load intel-oneapi-compilers
+spack load intel-oneapi-mpi
 </code></pre></div>
-<h2 id="checking-the-clusters"><strong>Checking the Clusters</strong></h2>
-<p>You may check the progress of the installation. <code>CF</code> indicates that the nodes is currently under configuration while <code>R</code> indicates running nodes.</p>
-<div class="highlight"><pre><span></span><code>squeue
-</code></pre></div>
-<p><img alt="Alt Text" src="../images/wps%20installation/squeue.png" /></p>
-<p>Use <code>cat</code> or <code>tail</code> to see the output of the installation. You shall see the successful installation message at the end of the output upon successful installation.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">cat</label><label for="__tabbed_1_2">tail</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat slurm-&lt;jobID&gt;.out
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tail slurm-&lt;jobID&gt;.out
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Use Spack find to check if the version of WPS is correctly installed under the intel compilers.</p>
-<p><img alt="Alt Text" src="../images/WRF_WPS%20successful%20installation/output.png" /></p>
-<div class="highlight"><pre><span></span><code>spack find
-</code></pre></div>
-<p><img alt="Alt Text" src="../images/WRF_WPS%20successful%20installation/spack.png" /></p>
 
 
 
