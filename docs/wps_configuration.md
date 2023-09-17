@@ -97,6 +97,8 @@ After compiling, you should see new files created in the folder. You can view th
 
 ## **Clean**
 
+If you want to start over the creation of the WPS executables, you can use the command below. Note that it will not delete any files, e.g., `met_em`, `.nc`, etc., other than those created in the compilation process
+
 !!! note
 
     to reset WPS settings!
