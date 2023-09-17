@@ -559,7 +559,7 @@
 mkdir GFS_Data
 cd GFS_Data
 </code></pre></div>
-<p>Before you start using the python script, check the website <a href="https://rda.ucar.edu/datasets/ds084.1/index.html" target="_blank">Research Data Archive website</a> to see if the data sets for your interested dates are available. Create a python script to download the GFS Data. </p>
+<p>Before you start using the Python script, check the website <a href="https://rda.ucar.edu/datasets/ds084.1/index.html" target="_blank">Research Data Archive website</a> to see if the data sets for your interested dates are available. Create a Python script to download the GFS Data. </p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gfs_downloader.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">  2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">  3</a></span>
@@ -780,24 +780,24 @@ cd GFS_Data
 <a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="n">download_file</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">ret</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">)</span>    
 <a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="n">EOF</span>
 </code></pre></div></td></tr></table></div>
-<p>Execute the python script to download the data. You must be a registered user on the NCAR website because you will be asked for password before the permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.</p>
+<p>Execute the Python script to download the data. You must be a registered user on the NCAR website because you will be asked for a password before permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.</p>
 <div class="highlight"><pre><span></span><code>pip3 install requests    
 python3 gfs_downloader.py
 </code></pre></div>
-<p>Obtain the path to your GFS_Data where in this case, it is <code>/shared/scratch/WPS</code>. Go back to the directory where your WPS is compiled and create the symbolic link to the GFS data that you just downloaded. You should expect four GRIBFILE with same prefix but different labels behind, AAA, AAB, AAC and AAD.</p>
+<p>Obtain the path to your <code>GFS_Data</code>, where, in this case, it is <code>/shared/scratch/WPS</code>. Go back to the directory where your WPS is compiled and create the symbolic links to the GFS data that you just downloaded. You should expect four GRIBFILE with the same prefix but different labels behind, <code>AAA</code>, <code>AAB</code>, <code>AAC</code> and <code>AAD</code>.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch/WPS
-./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/gfs.*
+./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/folder_name/gfs.*
 </code></pre></div>
 <p>Create the symbolic link to the Vtable.</p>
 <div class="highlight"><pre><span></span><code>ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
 ls -alh
 </code></pre></div>
 <p><img alt="Alt Text" src="../images/ungrib/four_gribfiles_and_vtable.png" /></p>
-<p>Now, it is time to edit the <code>namelist.wps</code>. Below are the few things that should be amended according to the GFS data. </p>
+<p>Now, it is time to edit the <code>namelist.wps</code>. Below are a few things that should be amended according to the GFS data: </p>
 <ul>
 <li>start date </li>
 <li>end date </li>
-<li>the interval seconds that desribe the interval between your GFS data</li>
+<li>the interval seconds that describe the interval of your GFS data</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nano namelist.wps
 </code></pre></div>
@@ -808,10 +808,10 @@ ulimit -s unlimited
 <p>Export the library path.</p>
 <div class="highlight"><pre><span></span><code>export LD_LIBRARY_PATH=/shared/spack/opt/spack/linux-amzn2-zen2/intel-2021.5.0/jasper-2.0.31-skcu73p6hnlgov6teechaq6muly2xrez/lib64/:\$LD_LIBRARY_PATH
 </code></pre></div>
-<p>Run the ungrib.</p>
+<p>Run the <code>ungrib</code>.</p>
 <div class="highlight"><pre><span></span><code>./ungrib.exe
 </code></pre></div>
-<p>You will see the successful output printed out at the completion of ungrib.exe and four output with prefix FILE are created.</p>
+<p>You will see the successful output printed out after <code>ungrib.exe</code> and four outputs with the prefix <code>FILE</code> are created.</p>
 <p><img alt="Alt Text" src="../images/ungrib/successful_ungrib_output_printed.png" />
 <img alt="Alt Text" src="../images/ungrib/screenshot_four%20output_of_prefix_FILE.png" /></p>
 <p>Remember to exit the superuser by typing exit.</p>

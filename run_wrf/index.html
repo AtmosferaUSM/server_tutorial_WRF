@@ -468,6 +468,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Running WRF
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -477,6 +488,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#execute-the-realexe-program" class="md-nav__link">
+    Execute the real.exe program
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -540,6 +577,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#execute-the-realexe-program" class="md-nav__link">
+    Execute the real.exe program
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -554,28 +606,40 @@
 
 
 <h1 id="running-wrf">Running WRF</h1>
-<p>Congratulations on your successful running of WPS 🥳 Now you are just one step away! Copy the WRF file in the newly created WRF folder in <code>/scratch</code>. Go into the <code>WRF/run</code> directory and link <code>met_em*</code> file.</p>
+<p>Congratulations on your successful running of WPS. 🥳 </p>
+<p>Now you are just one step away! </p>
+<p>Copy the WRF file in a newly created <code>WRF</code> folder in <code>/scratch</code>. You can name the folder into whatever name you want, e.g., <code>WRF1</code>, <code>WRF202210</code>, etc. </p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch
 mkdir WRF
 cd WRF
 cp -a $(spack location -i wrf%intel)/. /shared/scratch/WRF
-cd run
+</code></pre></div>
+<p>Go into the <code>WRF/run</code> directory and link the<code>met_em*</code> files. </p>
+<div class="highlight"><pre><span></span><code>cd run
 ln -sf /shared/scratch/WPS/met_em* .
 ls -alh
 </code></pre></div>
 <p><img alt="successful link met_em in run" src="../images/running%20wrf/successful_link_met_em_in_run.png" /></p>
-<p>Edit the <code>namelist.input</code> and make necessary changes or simply overwrite the namelist from the Resources tab. The details including <code>&amp;time_control</code> and <code>&amp;domains</code> has to be the same as defined in the <code>namelist.wps</code>.You may change the <code>&amp;physics</code> option here too. Refer to <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html" target="_blank">UCAR Website</a> for the best practices.</p>
+<p>Edit the <code>namelist.input</code> and make necessary changes, or simply overwrite the namelist using the info in the pre-built namelist in the Resources tab. The details, including <code>&amp;time_control</code> and <code>&amp;domains</code> have to be the same as defined in the <code>namelist.wps</code>.You may change the <code>&amp;physics</code> option here too. Refer to <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wrf.html" target="_blank">UCAR Website</a> for best practices.</p>
 <div class="highlight"><pre><span></span><code>nano namelist.input
 </code></pre></div>
-<p>Execute the real program. Load the <code>WRF</code> package before you run.</p>
+<h2 id="execute-the-realexe-program"><strong>Execute the real.exe program</strong></h2>
+<p>It is always good to reload the compilers every time you run the executables because it might need it, especially after you log off the terminal.</p>
+<div class="highlight"><pre><span></span><code>spack load intel-oneapi-compilers
+spack load intel-oneapi-mpi
+</code></pre></div>
+<p>Load the <code>WRF</code> package before you run. Run WRF to prepare the <code>met_em</code> files by executing <code>real.exe</code>.</p>
 <div class="highlight"><pre><span></span><code>spack load wrf
 mpirun -np 1 ./real.exe
 </code></pre></div>
-<p>Check the rsl.error files to ensure that the run was successful. To do that, you can use the tail command. Usually, the <code>rsl.error0000</code> will contain the most information.This indicate the successful run of <code>real.exe</code>, <code>real_em: SUCCESS COMPLETE REAL_EM INIT</code>.</p>
+<p>Check the <code>rsl.error</code> files to ensure that the run was successful. To do that, you can use the <code>tail</code> command. Usually, the <code>rsl.error.0000</code> will contain the most information. </p>
 <div class="highlight"><pre><span></span><code>tail rsl.error.0000
 </code></pre></div>
+<p>This indicates the successful run of <code>real.exe</code>:</p>
+<div class="highlight"><pre><span></span><code>real_em: SUCCESS COMPLETE REAL_EM INIT`
+</code></pre></div>
 <p><img alt="successful real.exe run" src="../images/running%20wrf/successful_real.exe_run.png" /></p>
-<p>Now you are ready to run the <code>wrf.exe</code>. We can use the slurm to submit and distribute the tasks for us. In order for the slurm to run wrf, make sure that it is in the same directory where your wrf.exe is located. Kindly amend the information according to your need. </p>
+<p>Now you are ready to run the <code>wrf.exe</code>. We can use <code>slurm</code> to submit and distribute the tasks to different compute nodes. For <code>slurm</code> to run WRF, ensure that it is in the same directory where your <code>wrf.exe</code> is located. Amend the information according to your needs. </p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">slurm-wrf-penang.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -640,7 +704,8 @@ spack load intel-oneapi-mpi
 spack load wrf
 sbatch slurm-wrf-penang.sh
 </code></pre></div>
-<p>Check the <code>rsl.out.0000</code> file to see if the run was successful. You will see a successful message printed at the end of the file.</p>
+<p>Check the <code>rsl.out.0000</code> file to see if the run was successful. </p>
+<p>You will see a successful message printed at the end of the file.</p>
 <div class="highlight"><pre><span></span><code>tail rsl.out.0000
 </code></pre></div>
 <p><img alt="successful output of wrf" src="../images/running%20wrf/successful%20output%20of%20wrf.png" /></p>

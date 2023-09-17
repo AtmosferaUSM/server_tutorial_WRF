@@ -689,7 +689,7 @@ cd WRF_Resources
 tar -xf geog_high_res_mandatory.tar.gz
 </code></pre></div>
 <h2 id="edit-the-geog_data_path-in-the-namelistwps"><strong>Edit the geog_data_path in the namelist.wps</strong></h2>
-<p>Point the directory of high-resolution data to WRF_Resources in the <code>nameslist.wps</code>. To do that, you will first have to obtain the path to <code>WPS_GEOG</code>.</p>
+<p>Point the directory of high-resolution data to WRF_Resources in the <code>nameslist.wps</code>. To do that, you must first obtain the path to <code>WPS_GEOG</code>.</p>
 <div class="highlight"><pre><span></span><code>cd WPS_GEOG
 pwd
 </code></pre></div>
@@ -700,7 +700,7 @@ nano namelist.wps
 <p>Under the <code>&amp;geogrid</code> section, edit the <code>geog_data_path</code> and save it.</p>
 <p><img alt="Alt Text" src="../images/geogrid/add%20path.png" /></p>
 <h2 id="edit-the-geogrid-section-in-namelistwps"><strong>Edit the &amp;geogrid section in namelist.wps</strong></h2>
-<p>Before executing <code>geogrid.exe</code>, edit the information in the namelist according to your case. Read the description for each listed variable in the namelist, as well as <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> here. We will be using the information provided in the Resources tab in this tutorial. </p>
+<p>Before executing <code>geogrid.exe</code>, edit the information in the namelist according to your case. Read the description for each listed variable in the namelist, as well as <a href="https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html" target="_blank">best practice</a> here. We will use the information provided in the Resources tab in this tutorial. </p>
 <p>Export the <code>LD_LIBRARY_PATH</code> and run the <code>geogrid.exe</code>. Ensure you had loaded the <code>intel-oneapi-compilers</code> and <code>intel-oneapi-mpi</code> using <code>spack</code> to avoid the issue of missing <code>libiomp5.so</code>. </p>
 <div class="highlight"><pre><span></span><code>export LD_LIBRARY_PATH=$(spack location -i netcdf-fortran%intel)/lib/
 spack load intel-oneapi-compilers
@@ -717,14 +717,14 @@ spack load intel-oneapi-mpi
 <p>First, open a nice DCV session. Go to the WPS directory, which in this case is <code>/shared/scratch/WPS/</code>. Now we are going to load the <code>ncl</code> package using <code>spack</code>.</p>
 <div class="highlight"><pre><span></span><code>spack load ncl
 </code></pre></div>
-<p>Now, type the following command to view the plot. Pay attention to the use of the new script as it is written for NCL version 6.2 or later.</p>
+<p>Now, type the following command to view the plot. Pay attention to using the new script as it is written for NCL version 6.2 or later.</p>
 <div class="highlight"><pre><span></span><code>ncl util/plotgrids_new.ncl
 </code></pre></div>
 <p>You have created the plot using DCV! </p>
 <p>Now repeat the previous process of editing the namelist to adjust the simulation so that it covers the interested domain. Be noted that this is for temporary viewing only. Proceed to the next section if you want to save the file locally.</p>
 <p><img alt="Alt Text" src="../images/geogrid/1.PNG" /></p>
 <h2 id="create-plots-in-pdf-format"><strong>Create plots in pdf format</strong></h2>
-<p>To export the image to PDF in the cluster, we are going to edit the <code>ncl</code> script in the <code>util</code> folder.</p>
+<p>To export the image to PDF in the cluster, we will edit the <code>ncl</code> script in the <code>util</code> folder.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch/WPS/util
 vim plotgrids_new.ncl
 </code></pre></div>
