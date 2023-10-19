@@ -9,8 +9,8 @@ Create GFS data under `/WRF_Resources` that you just created.
 
 Before you start using the Python script, check the [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. To proceed, you need to authenticate yourself for access to the GFS Data. Follow these steps to prepare for downloading the data:
 
-1. Visit the website and click on the "Sign in" button.
-2. Select "Sign in with Orcid.org". If you haven't registered on the Orcid website, you'll need to create an account.
+1. Visit the website and click on the `Sign in` button.
+2. Select `Sign in with Orcid.org`. If you haven't registered on the Orcid website, you'll need to create an account.
 3. After registering, go to your email account to confirm your email address. 
 4. Once confirmed, navigate back to the Research Data Archive website, and go to the [User Dashboard](https://rda.ucar.edu/ajax/#!cgi-bin/dashboard){target=_blank}.
 5. Click on [View/Edit Profile](https://rda.ucar.edu/accounts/profile/){target=_blank}. Here, you will find your Orcid ID and API token. Make a note of these details, as they are essential for the next steps.
@@ -131,7 +131,7 @@ EOF
 ```
 
 
-Execute the Python script to download the data. You must be a registered user on the NCAR website because you will be asked for a password before permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.
+After executing the Python code, enter your `ORCID ID` and `API Token`. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.
 
     pip3 install requests    
     python3 gfs_downloader.py
