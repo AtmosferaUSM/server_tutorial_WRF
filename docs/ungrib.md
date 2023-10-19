@@ -61,8 +61,8 @@ def check_file_status(filepath, filesize):
     sys.stdout.write('%.3f %s' % (percent_complete, '% Completed'))
     sys.stdout.flush()
 
-# Check for 3 arguments now (script name, username, and password)
-if len(sys.argv) < 3 and not 'RDAUSR' in os.environ: 
+# Check for 3 arguments now (script name, orcid_id, and api_token)
+if len(sys.argv) < 3 and not 'RDAID' in os.environ: 
     try:
         import getpass
     except:
@@ -70,18 +70,18 @@ if len(sys.argv) < 3 and not 'RDAUSR' in os.environ:
             input = raw_input  # For Python 2
         except:
             pass
-    usr = input('Username: ')
-    pswd = getpass.getpass('Password: ')  # Use getpass just for the password
+    orcid_id = input('Orcid ID: ')
+    api_token = getpass.getpass('API Token: ')  # Use getpass just for the password
 else:
     try:
-        usr = sys.argv[1]
-        pswd = sys.argv[2]
+        orcid_id = sys.argv[1]
+        api_token = sys.argv[2]
     except:
-        usr = os.environ['RDAUSR']
-        pswd = os.environ['RDAPSWD']
+        orcid_id = os.environ['RDAID']
+        api_token = os.environ['RDATOKEN']
 
 url = 'https://rda.ucar.edu/cgi-bin/login'
-values = {'email' : usr, 'passwd' : pswd, 'action' : 'login'}
+values = {'orcid_id' : orcid_id, 'api_token' : api_token, 'action' : 'tokenlogin'}
 
 # Authenticate
 ret = requests.post(url,data=values)
