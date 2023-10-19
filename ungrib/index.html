@@ -505,8 +505,8 @@ cd GFS_Data
 </code></pre></div>
 <p>Before you start using the Python script, check the <a href="https://rda.ucar.edu/datasets/ds084.1/index.html" target="_blank">Research Data Archive website</a> to see if the data sets for your interested dates are available. To proceed, you need to authenticate yourself for access to the GFS Data. Follow these steps to prepare for downloading the data:</p>
 <ol>
-<li>Visit the website and click on the "Sign in" button.</li>
-<li>Select "Sign in with Orcid.org". If you haven't registered on the Orcid website, you'll need to create an account.</li>
+<li>Visit the website and click on the <code>Sign in</code> button.</li>
+<li>Select <code>Sign in with Orcid.org</code>. If you haven't registered on the Orcid website, you'll need to create an account.</li>
 <li>After registering, go to your email account to confirm your email address. </li>
 <li>Once confirmed, navigate back to the Research Data Archive website, and go to the <a href="https://rda.ucar.edu/ajax/#!cgi-bin/dashboard" target="_blank">User Dashboard</a>.</li>
 <li>Click on <a href="https://rda.ucar.edu/accounts/profile/" target="_blank">View/Edit Profile</a>. Here, you will find your Orcid ID and API token. Make a note of these details, as they are essential for the next steps.</li>
@@ -732,7 +732,7 @@ cd GFS_Data
 <a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="n">download_file</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">ret</span><span class="o">.</span><span class="n">cookies</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">)</span>    
 <a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="n">EOF</span>
 </code></pre></div></td></tr></table></div>
-<p>Execute the Python script to download the data. You must be a registered user on the NCAR website because you will be asked for a password before permission to download the data is granted. After executing the Python code, enter your NCAR website username and password. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.</p>
+<p>After executing the Python code, enter your <code>ORCID ID</code> and <code>API Token</code>. Then, input the start date, end date, and hourly time interval; the code will then generate a list of files to download.</p>
 <div class="highlight"><pre><span></span><code>pip3 install requests    
 python3 gfs_downloader.py
 </code></pre></div>
