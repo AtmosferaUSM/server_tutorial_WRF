@@ -6,7 +6,15 @@ Create GFS data under `/WRF_Resources` that you just created.
     mkdir GFS_Data
     cd GFS_Data
 
-Before you start using the Python script, check the website [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. Create a Python script to download the GFS Data. 
+
+Before you start using the Python script, check the [Research Data Archive website](https://rda.ucar.edu/datasets/ds084.1/index.html){target=_blank} to see if the data sets for your interested dates are available. To proceed, you need to authenticate yourself for access to the GFS Data. Follow these steps to prepare for downloading the data:
+
+1. Visit the website and click on the "Sign in" button.
+2. Select "Sign in with Orcid.org". If you haven't registered on the Orcid website, you'll need to create an account.
+3. After registering, go to your email account to confirm your email address. 
+4. Once confirmed, navigate back to the Research Data Archive website, and go to the [User Dashboard](https://rda.ucar.edu/ajax/#!cgi-bin/dashboard){target=_blank}.
+5. Click on [View/Edit Profile](https://rda.ucar.edu/accounts/profile/){target=_blank}. Here, you will find your Orcid ID and API token. Make a note of these details, as they are essential for the next steps.
+6. With your authentication details at hand, you're set to create a Python script. This script will automate the downloading of the GFS data sets you need. Remember, the script requires your Orcid ID and API token for authentication during the download process.
 
 
 ``` py linenums="1" title="gfs_downloader.py"
