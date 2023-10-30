@@ -738,7 +738,7 @@ python3 gfs_downloader.py
 </code></pre></div>
 <p>Obtain the path to your <code>GFS_Data</code>, where, in this case, it is <code>/shared/scratch/WPS</code>. Go back to the directory where your WPS is compiled and create the symbolic links to the GFS data that you just downloaded. You should expect four GRIBFILE with the same prefix but different labels behind, <code>AAA</code>, <code>AAB</code>, <code>AAC</code> and <code>AAD</code>.</p>
 <div class="highlight"><pre><span></span><code>cd /shared/scratch/WPS
-./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/folder_name/gfs.*
+./link_grib.csh /shared/scratch/WRF_Resources/GFS_Data/<mark class="critic">folder_name</mark>/gfs.*
 </code></pre></div>
 <p>Create the symbolic link to the Vtable.</p>
 <div class="highlight"><pre><span></span><code>ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
