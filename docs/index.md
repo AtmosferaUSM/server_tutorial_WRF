@@ -14,6 +14,8 @@ We have to create a computer cluster on AWS to install and run WRF. The links to
 
 PCluster Manager makes it easy for us to create and manage the clusters through interface. This is an example configuration. For your first time, you may choose to upload the yml file we have prepared for you and configure to your prefered headnode and shared storage later by updating the yaml file further. In order for AWS to verify your identity, you will need to create your own [EC2 Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html){target=_blank} using Amazon EC2.  
 
+## **YML file for EBS**
+
 ``` yaml linenums="1" title="YAML File"
 HeadNode:
   InstanceType: c5a.xlarge
@@ -69,6 +71,71 @@ SharedStorage:
       DeletionPolicy: Delete
       Size: '200'
       Encrypted: false
+```
+
+## **YML file for EFS**
+
+``` yaml linenums="1" title="YAML File"
+HeadNode:
+  InstanceType: c5a.xlarge
+  Ssh:
+    KeyName: PClusterManager
+  Networking:
+    SubnetId: subnet-0412e7315562aa1da
+  LocalStorage:
+    RootVolume:
+      VolumeType: gp3
+      Size: 50
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+  Dcv:
+    Enabled: true
+  Imds:
+    Secured: true
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: queue0
+      ComputeResources:
+        - Name: queue0-hpc6a48xlarge
+          MinCount: 0
+          MaxCount: 10
+          Efa:
+            Enabled: true
+            GdrSupport: true
+          Instances:
+            - InstanceType: hpc6a.48xlarge
+      Networking:
+        SubnetIds:
+          - subnet-01a39ae1f7194644a
+        PlacementGroup:
+          Enabled: true
+      ComputeSettings:
+        LocalStorage:
+          RootVolume:
+            VolumeType: gp3
+            Size: 50
+      Iam:
+        AdditionalIamPolicies:
+          - Policy: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+  SlurmSettings: {}
+Region: us-east-2
+Image:
+  Os: alinux2
+SharedStorage:
+  - Name: Efs0
+    StorageType: Efs
+    MountDir: /shared
+    EfsSettings:
+      ThroughputMode: bursting
+      DeletionPolicy: Retain
+Imds:
+  ImdsSupport: v2.0
+Tags:
+  - Key: parallelcluster-ui
+    Value: 'true'
 ```
 
 ## **Create Cluster**

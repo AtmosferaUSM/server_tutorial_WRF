@@ -42,7 +42,7 @@
      s_we                                = 1,
      e_we                                = 125,   82, 
      e_sn                                = 100,   82,
-     e_vert                              = 45,    25,
+     e_vert                              = 45,    45,
      dx                                  = 15000,
      dy                                  = 15000,
      grid_id                             = 1,     2, 
@@ -61,7 +61,7 @@
      physics_suite                       = 'tropical'
      mp_physics                          = 24,    24,
      ra_lw_physics                       = 1,     1,
-     ra_sw_physics                       = 4,     1,
+     ra_sw_physics                       = 4,     4,
      radt                                = 27,    27,
      sf_sfclay_physics                   = 1,     1,
      sf_surface_physics                  = 2,     2,
@@ -116,7 +116,7 @@
      wrf_core = 'ARW',
      max_dom = 2,
      start_date = '2022-04-18_00:00:00','2022-04-18_00:00:00',
-     end_date   = '2021-04-20_00:00:00','2022-04-20_00:00:00',
+     end_date   = '2022-04-20_00:00:00','2022-04-20_00:00:00',
      interval_seconds = 21600
     /
     
